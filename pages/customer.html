@@ -12,25 +12,65 @@
             text-align: center;
         }
         .custSearchCard{
-            width: 40%;
+            width: 50%;
             position: absolute;
-            left: 0;
             right: 0;
             margin: auto;
         }
     </style>
 </head>
 <body>
+<!--nav bar-->
+<div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+    <div class="bg-dark p-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#"><b>POS-System</b></a>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="customer.html">Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" >Item</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" >PlaceOder</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" >OrderDetails</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+
+<!--search bar-->
 <div class="card custSearchCard">
     <div class="card-header custSearchCardHeader">
-        <b>Search Customer <b>
+        <b>Search Customer</b>
     </div>
     <div class="card-body">
         <div class="input-group mb-3">
-            <input type="text" class="form-control custSearchText" placeholder="Search here ....." aria-describedby="button-addon2">
-            <button class="btn btn-outline-success custSearchBtn" type="button" >Search</button>
+            <input type="text" class="form-control" placeholder="Search here ....." aria-describedby="button-addon2">
+            <button class="btn btn-outline-success" type="button" >Search</button>
         </div>
-
     </div>
 </div>
 
