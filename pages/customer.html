@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Customer</title>
+
+    <style>
+        .custSearchCardHeader{
+            background-color: lightblue;
+            height: 30px;
+        }
+        .custSearchCard{
+            width: 30%;
+        }
+    </style>
 </head>
 <body>
-<div class="input-group mb-3">
+<!--<div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Search here ....." aria-describedby="button-addon2">
     <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+</div>-->
+
+<div class="card custSearchCard">
+    <div class="card-header custSearchCardHeader">
+        Search Customer
+    </div>
+    <div class="card-body">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search here ....." aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+        </div>
+    </div>
 </div>
+
 </body>
 </html>
