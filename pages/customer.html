@@ -39,6 +39,11 @@
             text-align: center;
             left: 0;
         }
+        .custTh{
+            height: 30px;
+            padding: 1.5rem 2rem !important;
+            background-color: deepskyblue !important;
+        }
         .custInputText{
             width: 100%;
             right: 0;
@@ -98,10 +103,10 @@
         <thead>
 
         <tr>
-            <th style="background-color: deepskyblue" class="text-white">No</th>
-            <th style="background-color: deepskyblue" class="text-white">Customer Name</th>
-            <th style="background-color: deepskyblue" class="text-white">Customer Address</th>
-            <th style="background-color: deepskyblue" class="text-white">Customer Salary</th>
+            <th class="text-white custTh">No</th>
+            <th class="text-white custTh">Customer Name</th>
+            <th class="text-white custTh">Customer Address</th>
+            <th class="text-white custTh">Customer Salary</th>
         </tr>
         </thead>
         <tbody>
@@ -204,8 +209,7 @@
         </div>
         <!--button set-->
         <div class="btn-group custBtnSet2" role="group" aria-label="Basic mixed styles example">
-            <button type="button" class="btn btn-danger custBtn">Delete</button>
-            <button type="button" class="btn btn-warning custBtn" >Update</button>
+            <button type="button" class="btn btn-success custBtn" >Save</button>
             <button type="button" class="btn btn-primary custBtn">Clear</button>
         </div>
 
