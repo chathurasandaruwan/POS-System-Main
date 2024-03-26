@@ -8,14 +8,41 @@
 
     <style>
         .custSearchCardHeader{
-            background-color: lightblue;
+            background-color: green;
+            color: white;
             text-align: center;
         }
         .custSearchCard{
             width: 50%;
             position: absolute;
             right: 0;
+            /*left: 0;*/
             margin: auto;
+        }
+        .custBtnSet{
+            position: absolute;
+            top: 100px;
+            left: 10px;
+        }
+        .custBtn{
+            width: 160px;
+        }
+        .custTable{
+            width: 50%;
+            height: 100%;
+            position: absolute;
+            text-align: center;
+            left: 0;
+        }
+        .custInputText{
+            width: 100%;
+            right: 0;
+        }
+        .custInputCard{
+            width: 50%;
+            position: absolute;
+            top: 400px;
+            right: 0;
         }
     </style>
 </head>
@@ -60,6 +87,70 @@
     </div>
 </nav>
 
+<div class="table-responsive  mt-5" style="margin-top: 0rem !important;" >
+    <table class="table table-bordered table-hover table-striped-columns custTable">
+
+        <thead>
+
+        <tr>
+            <th style="background-color: deepskyblue" class="text-white">No</th>
+            <th style="background-color: deepskyblue" class="text-white">Customer Name</th>
+            <th style="background-color: deepskyblue" class="text-white">Customer Address</th>
+            <th style="background-color: deepskyblue" class="text-white">Customer Salary</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>C001</td>
+            <td>Isuru</td>
+            <td>Pitiwalla</td>
+            <td>20000</td>
+        </tr>
+        <tr>
+            <td>C002</td>
+            <td>Oshanda</td>
+            <td>Baddegama</td>
+            <td>20000</td>
+        </tr>
+        <tr>
+            <td>C003</td>
+            <td>Kaveen</td>
+            <td>Waligama</td>
+            <td>20000</td>
+        </tr>
+        <tr>
+            <td>C004</td>
+            <td>Hasith</td>
+            <td>Galagoda</td>
+            <td>20000</td>
+        </tr>
+        <tr>
+            <td>C005</td>
+            <td>Kaveen</td>
+            <td>Waligama</td>
+            <td>20000</td>
+        </tr>
+        <tr>
+            <td>C006</td>
+            <td>Hasith</td>
+            <td>Rathmalana</td>
+            <td>20000</td>
+        </tr>
+        <tr>
+            <td>C007</td>
+            <td>Keveen</td>
+            <td>Kandy</td>
+            <td>20000</td>
+        </tr>
+        <tr>
+            <td>C008</td>
+            <td>Hasitha</td>
+            <td>Panadura</td>
+            <td>20000</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <!--search bar-->
 <div class="card custSearchCard">
@@ -70,7 +161,43 @@
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Search here ....." aria-describedby="button-addon2">
             <button class="btn btn-outline-success" type="button" >Search</button>
+
+            <!--button set-->
+            <div class="btn-group custBtnSet" role="group" aria-label="Basic mixed styles example">
+                <button type="button" class="btn btn-danger custBtn">Delete</button>
+                <button type="button" class="btn btn-warning custBtn">Update</button>
+                <button type="button" class="btn btn-primary custBtn">Clear</button>
+            </div>
         </div>
+    </div>
+</div>
+
+<!--input card-->
+<div class="card custInputCard">
+    <div class="card-header custSearchCardHeader">
+        <b>Add New Customer</b>
+    </div>
+    <div class="card-body">
+
+        <div class="custInputText">
+            <div class="form-floating mb-3 p-1">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Customer Id">
+                <label for="floatingInput">Customer Id</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="flotingName" placeholder="Customer Name">
+                <label for="flotingName">Customer Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingAddress" placeholder="Customer Address">
+                <label for="floatingAddress">Customer Address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="floatingSalary" placeholder="Customer Salary">
+                <label for="floatingSalary">Customer Salary</label>
+            </div>
+        </div>
+
     </div>
 </div>
 
