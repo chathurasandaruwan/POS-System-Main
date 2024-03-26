@@ -170,7 +170,7 @@
             <!--button set-->
             <div class="btn-group custBtnSet" role="group" aria-label="Basic mixed styles example">
                 <button type="button" class="btn btn-danger custBtn">Delete</button>
-                <button type="button" class="btn btn-warning custBtn">Update</button>
+                <button type="button" class="btn btn-warning custBtn "data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
                 <button type="button" class="btn btn-primary custBtn">Clear</button>
             </div>
         </div>
@@ -205,10 +205,47 @@
         <!--button set-->
         <div class="btn-group custBtnSet2" role="group" aria-label="Basic mixed styles example">
             <button type="button" class="btn btn-danger custBtn">Delete</button>
-            <button type="button" class="btn btn-warning custBtn">Update</button>
+            <button type="button" class="btn btn-warning custBtn" >Update</button>
             <button type="button" class="btn btn-primary custBtn">Clear</button>
         </div>
 
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Customer</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="custInputText">
+                    <div class="form-floating mb-3 p-1">
+                        <input type="text" class="form-control" id="cust_id" placeholder="Customer Id">
+                        <label for="floatingInput">Customer Id</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="cust_Name" placeholder="Customer Name">
+                        <label for="flotingName">Customer Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="cust_Address" placeholder="Customer Address">
+                        <label for="floatingAddress">Customer Address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="cust_Salary" placeholder="Customer Salary">
+                        <label for="floatingSalary">Customer Salary</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning " >Update</button>
+                <button type="button" class="btn btn-primary">Clear</button>
+            </div>
+        </div>
     </div>
 </div>
 
