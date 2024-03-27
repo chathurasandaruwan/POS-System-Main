@@ -27,6 +27,19 @@
             height: 400px;
             margin-left: 65px;
         }
+        .custTable{
+            width: 70%;
+            height: 100px;
+            position: absolute;
+            top: 490px;
+            text-align: center;
+            right: 60px;
+        }
+        .custTh{
+            height: 30px;
+            padding: 1.5rem 2rem !important;
+            background-color: deepskyblue !important;
+        }
     </style>
 </head>
 <body>
@@ -171,6 +184,40 @@
     </div>
 </div>
 
+<!--table view-->
+<div class="table-responsive  mt-3 " >
+    <table class="table table-bordered table-hover table-striped-columns custTable">
+
+        <thead>
+
+        <tr>
+            <th  class="text-white custTh">Item Code</th>
+            <th  class=" text-white custTh">Item Name</th>
+            <th  class=" text-white custTh">Price</th>
+            <th  class=" text-white custTh">Quantity</th>
+            <th  class=" text-white custTh">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>P002</td>
+            <td>Keerisamba 5kg</td>
+            <td>700</td>
+            <td>2</td>
+            <td>1400</td>
+        </tr>
+        <tr>
+            <td>P001</td>
+            <td>sugar 1kg</td>
+            <td>800</td>
+            <td>2</td>
+            <td>1600</td>
+        </tr>
+        </tbody>
+
+
+    </table>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
