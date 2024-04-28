@@ -762,6 +762,8 @@
     $('#item').css({display:"none"});
     $('#place_order').css({display:"none"});
     $('#order_details').css({display:"none"});
+    $('.nav-link').removeClass('active');
+    $('#home-nav').addClass('active');
 
 
     $('#home-nav').on('click',() => {
@@ -793,6 +795,8 @@
         $('#place_order').css({display:"none"});
         $('#order_details').css({display:"none"});
 
+        $('.nav-link').removeClass('active');
+        $('#item-nav').addClass('active');
     });
 
     $('#place_order-nav').on('click',() =>{
@@ -802,6 +806,8 @@
         $('#place_order').css({display:"block"});
         $('#order_details').css({display:"none"});
 
+        $('.nav-link').removeClass('active');
+        $('#place_order-nav').addClass('active');
     });
 
     $('#order_details-nav').on('click',()=>{
@@ -810,6 +816,9 @@
         $('#item').css({display:"none"});
         $('#place_order').css({display:"none"});
         $('#order_details').css({display:"block"});
+
+        $('.nav-link').removeClass('active');
+        $('#order_details-nav').addClass('active');
 
 
     });
