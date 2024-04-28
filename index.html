@@ -135,7 +135,8 @@
                             <span class="nav-link navSpan" id="customer-nav">Customer</span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pages/item.html" >Item</a>
+<!--                            <a class="nav-link" href="pages/item.html" >Item</a>-->
+                            <span class="nav-link navSpan" id="item-nav">Item</span>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="pages/place_order.html" >PlaceOder</a>
@@ -776,6 +777,14 @@
         $('#home').css({display:"none"});
         $('#customer').css({display:"block"});
         $('#item').css({display:"none"});
+        $('#place_order').css({display:"none"});
+        $('#order_details').css({display:"none"});
+    });
+
+    $('#item-nav').on('click',() => {
+        $('#home').css({display:"none"});
+        $('#customer').css({display:"none"});
+        $('#item').css({display:"block"});
         $('#place_order').css({display:"none"});
         $('#order_details').css({display:"none"});
     });
