@@ -124,6 +124,7 @@
         </div>
     </div>
 </section>
+<!--customer-->
 <section id="customer">
     <div class="table-responsive  mt-5" style="margin-top: 0rem !important;" >
         <table class="table table-bordered table-hover table-striped-columns custTable">
@@ -311,12 +312,181 @@
         </div>
     </div>
 </section>
+<!--item-->
+<section id="item">
+    <div class="table-responsive  mt-5" style="margin-top: 0rem !important;" >
+        <table class="table table-bordered table-hover table-striped-columns custTable">
 
+            <thead>
 
+            <tr>
+                <th class="text-white custTh">No</th>
+                <th class="text-white custTh">Item Name</th>
+                <th class="text-white custTh">Price</th>
+                <th class="text-white custTh">Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>I001</td>
+                <td>Sunlight</td>
+                <td>200.00</td>
+                <td>60</td>
+            </tr>
+            <tr>
+                <td>I002</td>
+                <td>Sugar</td>
+                <td>150.00</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>I003</td>
+                <td>keerisamnba</td>
+                <td>300</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>I004</td>
+                <td>maliban</td>
+                <td>300</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>I005</td>
+                <td>ratthi</td>
+                <td>1000</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>I005</td>
+                <td>ratthi</td>
+                <td>1000</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>I006</td>
+                <td>ratthi</td>
+                <td>1000</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>I007</td>
+                <td>ratthi</td>
+                <td>1000</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>I008</td>
+                <td>keerisamnba</td>
+                <td>300</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>I009</td>
+                <td>keerisamnba</td>
+                <td>300</td>
+                <td>50</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--search bar-->
+    <div class="card custSearchCard">
+        <div class="card-header custSearchCardHeader">
+            <b>Search Item</b>
+        </div>
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search here ....." aria-describedby="button-addon2">
+                <button class="btn btn-outline-success" type="button" >Search</button>
+
+                <!--button set-->
+                <div class="btn-group custBtnSet" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" class="btn btn-danger custBtn">Delete</button>
+                    <button type="button" class="btn btn-warning custBtn "data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+                    <button type="button" class="btn btn-primary custBtn">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--input card-->
+    <div class="card custInputCard">
+        <div class="card-header custSearchCardHeader">
+            <b>Add New Item</b>
+        </div>
+        <div class="card-body">
+
+            <div class="custInputText">
+                <div class="form-floating mb-3 p-1">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Item Code">
+                    <label for="floatingInput">Item Code</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingName" placeholder="Item Name">
+                    <label for="floatingName">Item Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="floatingPrice" placeholder="Price">
+                    <label for="floatingPrice">Price</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="floatingQty" placeholder="Quantity">
+                    <label for="floatingQty">Quantity</label>
+                </div>
+            </div>
+            <!--button set-->
+            <div class="btn-group custBtnSet2" role="group" aria-label="Basic mixed styles example">
+                <button type="button" class="btn custBtn btn-warning"  >Save</button>
+                <button type="button" class="btn btn-primary custBtn">Clear</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Update Item</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="custInputText">
+                        <div class="form-floating mb-3 p-1">
+                            <input type="text" class="form-control" id="item_code" placeholder="Item Code">
+                            <label for="item_code">Item Code</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="item_Name" placeholder="Item Name">
+                            <label for="item_Name">Item Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="item_price" placeholder="Price">
+                            <label for="item_price">Price</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="qty" placeholder="Quantity">
+                            <label for="qty">Quantity</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning " >Update</button>
+                    <button type="button" class="btn btn-primary">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <script src="assets/lib/jquery-3.7.1.min.js.js"></script>
 <script>
     $('#home').css({display:"none"});
-    $('#customer').css({display:"block"});
+    $('#customer').css({display:"none"});
+    $('#item').css({display:"block"});
 
 
 </script>
