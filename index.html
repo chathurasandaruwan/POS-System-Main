@@ -99,6 +99,16 @@
             right: 60px;
         }
 
+        .custODTable{
+            height: 90%;
+            position: absolute;
+            text-align: center;
+            left: 0;
+        }
+        .custSearchForm{
+            width: 40%;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -651,12 +661,104 @@
         </table>
     </div>
 </section>
+
+<!--order details-->
+<section id="order_details">
+    <!--search bar-->
+    <form class="d-flex custSearchForm" role="search">
+        <input class="form-control me-2" style="border: 2px solid green" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success " type="submit">Search</button>
+    </form>
+
+    <!--table view-->
+    <div class="table-responsive  mt-5" style="margin-top: 0rem !important;" >
+        <table class="table table-bordered table-hover table-striped-columns custODTable">
+
+            <thead>
+
+            <tr>
+                <th class="text-white custTh">Order Id</th>
+                <th class="text-white custTh">Item Code</th>
+                <th class="text-white custTh">Qty</th>
+                <th class="text-white custTh">Payment</th>
+                <th class="text-white custTh">Customer Id</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>O001</td>
+                <td>I002</td>
+                <td>2</td>
+                <td>2000</td>
+                <td>C002</td>
+            </tr>
+            <tr>
+                <td>O002</td>
+                <td>I003</td>
+                <td>4</td>
+                <td>5000</td>
+                <td>C003</td>
+            </tr>
+            <tr>
+                <td>O003</td>
+                <td>I007</td>
+                <td>6</td>
+                <td>9000</td>
+                <td>C001</td>
+            </tr>
+            <tr>
+                <td>O004</td>
+                <td>I005</td>
+                <td>1</td>
+                <td>1000</td>
+                <td>C004</td>
+            </tr>
+            <tr>
+                <td>O005</td>
+                <td>I009</td>
+                <td>3</td>
+                <td>3000</td>
+                <td>C006</td>
+            </tr>
+            <tr>
+                <td>O006</td>
+                <td>I007</td>
+                <td>6</td>
+                <td>600</td>
+                <td>C006</td>
+            </tr>
+            <tr>
+                <td>O007</td>
+                <td>I003</td>
+                <td>2</td>
+                <td>2000</td>
+                <td>C009</td>
+            </tr>
+            <tr>
+                <td>O008</td>
+                <td>I008</td>
+                <td>5</td>
+                <td>15000</td>
+                <td>C005</td>
+            </tr>
+            <tr>
+                <td>O009</td>
+                <td>I002</td>
+                <td>2</td>
+                <td>2000</td>
+                <td>C007</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 <script src="assets/lib/jquery-3.7.1.min.js.js"></script>
 <script>
     $('#home').css({display:"none"});
     $('#customer').css({display:"none"});
     $('#item').css({display:"none"});
-    $('#place_order').css({display:"block"});
+    $('#place_order').css({display:"none"});
+    $('#order_details').css({display:"block"});
 
 
 </script>
