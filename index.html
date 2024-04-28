@@ -22,6 +22,54 @@
             color: black;
         }
 
+        .custSearchCardHeader{
+            background-color: green;
+            color: white;
+            text-align: center;
+        }
+        .custSearchCard{
+            width: 50%;
+            position: absolute;
+            right: 0;
+            /*left: 0;*/
+            margin: auto;
+        }
+        .custBtnSet{
+            position: absolute;
+            top: 100px;
+            left: 10px;
+        }
+        .custBtnSet2{
+            position: absolute;
+            top: 430px;
+            left: 30px;
+        }
+        .custBtn{
+            width: 160px;
+        }
+        .custTable{
+            width: 50%;
+            height: 90%;
+            position: absolute;
+            text-align: center;
+            left: 0;
+        }
+        .custTh{
+            height: 30px;
+            padding: 1.5rem 2rem !important;
+            background-color: deepskyblue !important;
+        }
+        .custInputText{
+            width: 100%;
+            right: 0;
+        }
+        .custInputCard{
+            width: 50%;
+            position: absolute;
+            top: 400px;
+            right: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -76,9 +124,199 @@
         </div>
     </div>
 </section>
+<section id="customer">
+    <div class="table-responsive  mt-5" style="margin-top: 0rem !important;" >
+        <table class="table table-bordered table-hover table-striped-columns custTable">
+
+            <thead>
+
+            <tr>
+                <th class="text-white custTh">No</th>
+                <th class="text-white custTh">Customer Name</th>
+                <th class="text-white custTh">Customer Address</th>
+                <th class="text-white custTh">Customer Salary</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>C001</td>
+                <td>Isuru</td>
+                <td>Pitiwalla</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C002</td>
+                <td>Oshanda</td>
+                <td>Baddegama</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C003</td>
+                <td>Kaveen</td>
+                <td>Waligama</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C004</td>
+                <td>Hasith</td>
+                <td>Galagoda</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C005</td>
+                <td>Kaveen</td>
+                <td>Waligama</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C006</td>
+                <td>Hasith</td>
+                <td>Rathmalana</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C007</td>
+                <td>Keveen</td>
+                <td>Kandy</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C008</td>
+                <td>Hasitha</td>
+                <td>Panadura</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C008</td>
+                <td>Hasitha</td>
+                <td>Panadura</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C008</td>
+                <td>Hasitha</td>
+                <td>Panadura</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C008</td>
+                <td>Hasitha</td>
+                <td>Panadura</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C008</td>
+                <td>Hasitha</td>
+                <td>Panadura</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>C008</td>
+                <td>Hasitha</td>
+                <td>Panadura</td>
+                <td>20000</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--search bar-->
+    <div class="card custSearchCard">
+        <div class="card-header custSearchCardHeader">
+            <b>Search Customer</b>
+        </div>
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search here ....." aria-describedby="button-addon2">
+                <button class="btn btn-outline-success" type="button" >Search</button>
+
+                <!--button set-->
+                <div class="btn-group custBtnSet" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" class="btn btn-danger custBtn">Delete</button>
+                    <button type="button" class="btn btn-warning custBtn "data-bs-toggle="modal" data-bs-target="#exampleModal">Update</button>
+                    <button type="button" class="btn btn-primary custBtn">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--input card-->
+    <div class="card custInputCard">
+        <div class="card-header custSearchCardHeader">
+            <b>Add New Customer</b>
+        </div>
+        <div class="card-body">
+
+            <div class="custInputText">
+                <div class="form-floating mb-3 p-1">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Customer Id">
+                    <label for="floatingInput">Customer Id</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="flotingName" placeholder="Customer Name">
+                    <label for="flotingName">Customer Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingAddress" placeholder="Customer Address">
+                    <label for="floatingAddress">Customer Address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="floatingSalary" placeholder="Customer Salary">
+                    <label for="floatingSalary">Customer Salary</label>
+                </div>
+            </div>
+            <!--button set-->
+            <div class="btn-group custBtnSet2" role="group" aria-label="Basic mixed styles example">
+                <button type="button" class="btn custBtn btn-warning"  >Save</button>
+                <button type="button" class="btn btn-primary custBtn">Clear</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Update Customer</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="custInputText">
+                        <div class="form-floating mb-3 p-1">
+                            <input type="text" class="form-control" id="cust_id" placeholder="Customer Id">
+                            <label for="floatingInput">Customer Id</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="cust_Name" placeholder="Customer Name">
+                            <label for="flotingName">Customer Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="cust_Address" placeholder="Customer Address">
+                            <label for="floatingAddress">Customer Address</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="cust_Salary" placeholder="Customer Salary">
+                            <label for="floatingSalary">Customer Salary</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning " >Update</button>
+                    <button type="button" class="btn btn-primary">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <script src="assets/lib/jquery-3.7.1.min.js.js"></script>
 <script>
-    $('#home').css({display:"block"});
+    $('#home').css({display:"none"});
+    $('#customer').css({display:"block"});
 
 
 </script>
