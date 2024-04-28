@@ -112,6 +112,7 @@
         .navSpan{
             cursor: pointer;
         }
+
     </style>
 </head>
 <body>
@@ -127,23 +128,18 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-<!--                            <a class="nav-link active" aria-current="page" href="#">Home</a>-->
-                            <span class="nav-link active navSpan" id="home-nav">Home</span>
+                            <span class="nav-link navSpan" id="home-nav">Home</span>
                         </li>
                         <li class="nav-item">
-<!--                            <a class="nav-link" href="pages/customer.html">Customer</a>-->
                             <span class="nav-link navSpan" id="customer-nav">Customer</span>
                         </li>
                         <li class="nav-item">
-<!--                            <a class="nav-link" href="pages/item.html" >Item</a>-->
                             <span class="nav-link navSpan" id="item-nav">Item</span>
                         </li>
                         <li class="nav-item">
-<!--                            <a class="nav-link" href="pages/place_order.html" >PlaceOder</a>-->
                             <span class="nav-link navSpan" id="place_order-nav">PlaceOder</span>
                         </li>
                         <li class="nav-item">
-<!--                            <a class="nav-link" href="pages/order_details.html" >OrderDetails</a>-->
                             <span class="nav-link navSpan" id="order_details-nav" >OrderDetails</span>
                         </li>
                     </ul>
@@ -767,12 +763,16 @@
     $('#place_order').css({display:"none"});
     $('#order_details').css({display:"none"});
 
+
     $('#home-nav').on('click',() => {
         $('#home').css({display:"block"});
         $('#customer').css({display:"none"});
         $('#item').css({display:"none"});
         $('#place_order').css({display:"none"});
         $('#order_details').css({display:"none"});
+
+        $('.nav-link').removeClass('active');
+        $('#home-nav').addClass('active');
     });
 
     $('#customer-nav').on('click',() =>{
@@ -781,6 +781,9 @@
         $('#item').css({display:"none"});
         $('#place_order').css({display:"none"});
         $('#order_details').css({display:"none"});
+
+        $('.nav-link').removeClass('active');
+        $('#customer-nav').addClass('active');
     });
 
     $('#item-nav').on('click',() => {
@@ -789,6 +792,7 @@
         $('#item').css({display:"block"});
         $('#place_order').css({display:"none"});
         $('#order_details').css({display:"none"});
+
     });
 
     $('#place_order-nav').on('click',() =>{
@@ -797,6 +801,7 @@
         $('#item').css({display:"none"});
         $('#place_order').css({display:"block"});
         $('#order_details').css({display:"none"});
+
     });
 
     $('#order_details-nav').on('click',()=>{
@@ -805,6 +810,8 @@
         $('#item').css({display:"none"});
         $('#place_order').css({display:"none"});
         $('#order_details').css({display:"block"});
+
+
     });
 
 </script>
