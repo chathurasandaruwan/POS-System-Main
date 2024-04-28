@@ -765,7 +765,19 @@
     $('#order_details').css({display:"none"});
 
     $('#home-nav').on('click',() => {
-        console.log("home")
+        $('#home').css({display:"block"});
+        $('#customer').css({display:"none"});
+        $('#item').css({display:"none"});
+        $('#place_order').css({display:"none"});
+        $('#order_details').css({display:"none"});
+    });
+
+    $('#customer-nav').on('click',() =>{
+        $('#home').css({display:"none"});
+        $('#customer').css({display:"block"});
+        $('#item').css({display:"none"});
+        $('#place_order').css({display:"none"});
+        $('#order_details').css({display:"none"});
     });
 
 
