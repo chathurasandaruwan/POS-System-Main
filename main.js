@@ -16,6 +16,7 @@ $('#home-nav').on('click',() => {
 
     $('.nav-link').removeClass('active');
     $('#home-nav').addClass('active');
+    $('#navbarToggleExternalContent').removeClass('show');
 });
 
 $('#customer-nav').on('click',() =>{
@@ -27,6 +28,7 @@ $('#customer-nav').on('click',() =>{
 
     $('.nav-link').removeClass('active');
     $('#customer-nav').addClass('active');
+    $('#navbarToggleExternalContent').removeClass('show');
 });
 
 $('#item-nav').on('click',() => {
@@ -38,6 +40,7 @@ $('#item-nav').on('click',() => {
 
     $('.nav-link').removeClass('active');
     $('#item-nav').addClass('active');
+    $('#navbarToggleExternalContent').removeClass('show');
 });
 
 $('#place_order-nav').on('click',() =>{
@@ -49,6 +52,7 @@ $('#place_order-nav').on('click',() =>{
 
     $('.nav-link').removeClass('active');
     $('#place_order-nav').addClass('active');
+    $('#navbarToggleExternalContent').removeClass('show');
 });
 
 $('#order_details-nav').on('click',()=>{
@@ -60,4 +64,5 @@ $('#order_details-nav').on('click',()=>{
 
     $('.nav-link').removeClass('active');
     $('#order_details-nav').addClass('active');
+    $('#navbarToggleExternalContent').removeClass('show');
 });
