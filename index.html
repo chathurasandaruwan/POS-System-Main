@@ -756,74 +756,7 @@
 </section>
 
 <script src="assets/lib/jquery-3.7.1.min.js.js"></script>
-<script>
-    $('#home').css({display:"block"});
-    $('#customer').css({display:"none"});
-    $('#item').css({display:"none"});
-    $('#place_order').css({display:"none"});
-    $('#order_details').css({display:"none"});
-    $('.nav-link').removeClass('active');
-    $('#home-nav').addClass('active');
-
-
-    $('#home-nav').on('click',() => {
-        $('#home').css({display:"block"});
-        $('#customer').css({display:"none"});
-        $('#item').css({display:"none"});
-        $('#place_order').css({display:"none"});
-        $('#order_details').css({display:"none"});
-
-        $('.nav-link').removeClass('active');
-        $('#home-nav').addClass('active');
-    });
-
-    $('#customer-nav').on('click',() =>{
-        $('#home').css({display:"none"});
-        $('#customer').css({display:"block"});
-        $('#item').css({display:"none"});
-        $('#place_order').css({display:"none"});
-        $('#order_details').css({display:"none"});
-
-        $('.nav-link').removeClass('active');
-        $('#customer-nav').addClass('active');
-    });
-
-    $('#item-nav').on('click',() => {
-        $('#home').css({display:"none"});
-        $('#customer').css({display:"none"});
-        $('#item').css({display:"block"});
-        $('#place_order').css({display:"none"});
-        $('#order_details').css({display:"none"});
-
-        $('.nav-link').removeClass('active');
-        $('#item-nav').addClass('active');
-    });
-
-    $('#place_order-nav').on('click',() =>{
-        $('#home').css({display:"none"});
-        $('#customer').css({display:"none"});
-        $('#item').css({display:"none"});
-        $('#place_order').css({display:"block"});
-        $('#order_details').css({display:"none"});
-
-        $('.nav-link').removeClass('active');
-        $('#place_order-nav').addClass('active');
-    });
-
-    $('#order_details-nav').on('click',()=>{
-        $('#home').css({display:"none"});
-        $('#customer').css({display:"none"});
-        $('#item').css({display:"none"});
-        $('#place_order').css({display:"none"});
-        $('#order_details').css({display:"block"});
-
-        $('.nav-link').removeClass('active');
-        $('#order_details-nav').addClass('active');
-
-
-    });
-
-</script>
+<script src="main.js"></script>
 
 <script src="assets/fontawesome-free-6.5.1-web/js/all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
