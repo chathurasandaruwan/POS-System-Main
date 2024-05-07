@@ -36,4 +36,9 @@ $("#customer-table").on('click','tr',function (){
     $("#customerAdd").val(custAddValue);
     $("#customerSalary").val(custSalaryValue);
 
+    $("#cust_id").val(custIdValue);
+    $("#cust_Name").val(custNameValue);
+    $("#cust_Address").val(custAddValue);
+    $("#cust_Salary").val(custSalaryValue);
+
 });
