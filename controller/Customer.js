@@ -1,4 +1,5 @@
 import CustomerModel from "../model/CustomerModel.js";
+import {CustomerAr} from "../db/db.js";
 
 $('#save_btn').on('click' , ()=>{
     var customerId=$("#customerId").val();
@@ -8,4 +9,6 @@ $('#save_btn').on('click' , ()=>{
 
     let customerDetails = new CustomerModel(customerId,customerName,customerAdd,customerSalary);
     console.log(customerDetails);
+    CustomerAr.push(customerDetails);
+    console.log(CustomerAr[0]);
 });
