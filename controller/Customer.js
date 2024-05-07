@@ -62,3 +62,20 @@ $("#delete_btn").on('click',()=>{
     CustomerAr.splice(recordIndex,1);
     loadTable();
 });
+
+$("#Update_btn").on('click',()=>{
+    var custId=$("#cust_id").val();
+    var custName=$("#cust_Name").val();
+    var custAdd=$("#cust_Address").val();
+    var custSalary=$("#cust_Salary").val();
+
+    var customerObj = CustomerAr[recordIndex];
+    customerObj.customerId = custId;
+    customerObj.customerName = custName;
+    customerObj.customerAdd = custAdd;
+    customerObj.customerSalary = custSalary;
+
+    console.log("Update btn")
+
+    loadTable();
+});
