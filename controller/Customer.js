@@ -12,7 +12,6 @@ $('#save_btn').on('click' , ()=>{
     console.log(CustomerAr[0]);
     loadTable();
 });
-
 function loadTable() {
     $('#customer-table').empty();
     CustomerAr.map((item,index) =>{
@@ -25,3 +24,6 @@ function loadTable() {
         $('#customer-table').append(record);
     });
 }
+$("#customer-table").on('click','tr',function (){
+    console.log("clicked tr")
+});
