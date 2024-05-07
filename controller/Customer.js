@@ -16,14 +16,24 @@ function loadTable() {
     $('#customer-table').empty();
     CustomerAr.map((item,index) =>{
         var record=`<tr>
-            <td>${item.customerId}</td>
-            <td>${item.customerName}</td>
-            <td>${item.customerAdd}</td>
-            <td>${item.customerSalary}</td>
+            <td id="customerIdValue">${item.customerId}</td>
+            <td id="customerNameValue">${item.customerName}</td>
+            <td id="customerAddValue">${item.customerAdd}</td>
+            <td id="customerSalaryValue">${item.customerSalary}</td>
         </tr>`
         $('#customer-table').append(record);
     });
 }
 $("#customer-table").on('click','tr',function (){
-    console.log("clicked tr")
+
+    let custIdValue = $(this).find("#customerIdValue").text();
+    let custNameValue = $(this).find("#customerNameValue").text();
+    let custAddValue = $(this).find("#customerAddValue").text();
+    let custSalaryValue = $(this).find("#customerSalaryValue").text();
+
+    $("#customerId").val(custIdValue);
+    $("#customerName").val(custNameValue);
+    $("#customerAdd").val(custAddValue);
+    $("#customerSalary").val(custSalaryValue);
+
 });
