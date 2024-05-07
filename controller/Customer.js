@@ -12,6 +12,7 @@ $('#save_btn').on('click' , ()=>{
     CustomerAr.push(customerDetails);
     console.log(CustomerAr[0]);
     loadTable();
+    clearInputs();
 });
 function loadTable() {
     $('#customer-table').empty();
@@ -47,20 +48,13 @@ $("#customer-table").on('click','tr',function (){
 });
 
 $('#clear_btn').on('click' , ()=>{
-    $("#customerId").val("");
-    $("#customerName").val("");
-    $("#customerAdd").val("");
-    $("#customerSalary").val("");
-
-    $("#cust_id").val("");
-    $("#cust_Name").val("");
-    $("#cust_Address").val("");
-    $("#cust_Salary").val("");
+    clearInputs();
 });
 
 $("#delete_btn").on('click',()=>{
     CustomerAr.splice(recordIndex,1);
     loadTable();
+    clearInputs();
 });
 
 $("#Update_btn").on('click',()=>{
@@ -75,7 +69,18 @@ $("#Update_btn").on('click',()=>{
     customerObj.customerAdd = custAdd;
     customerObj.customerSalary = custSalary;
 
-    console.log("Update btn")
-
+    $("#exampleModal1").modal("hide");
     loadTable();
+    clearInputs();
 });
+function clearInputs() {
+    $("#customerId").val("");
+    $("#customerName").val("");
+    $("#customerAdd").val("");
+    $("#customerSalary").val("");
+
+    $("#cust_id").val("");
+    $("#cust_Name").val("");
+    $("#cust_Address").val("");
+    $("#cust_Salary").val("");
+}
