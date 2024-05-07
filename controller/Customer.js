@@ -8,7 +8,6 @@ $('#save_btn').on('click' , ()=>{
     var customerSalary=$("#customerSalary").val();
 
     let customerDetails = new CustomerModel(customerId,customerName,customerAdd,customerSalary);
-    console.log(customerDetails);
     CustomerAr.push(customerDetails);
     console.log(CustomerAr[0]);
     loadTable();
