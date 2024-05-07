@@ -11,4 +11,15 @@ $('#save_btn').on('click' , ()=>{
     console.log(customerDetails);
     CustomerAr.push(customerDetails);
     console.log(CustomerAr[0]);
+
+    CustomerAr.map((item,index) =>{
+        var record=`<tr>
+            <td>${item.customerId}</td>
+            <td>${item.customerName}</td>
+            <td>${item.customerAdd}</td>
+            <td>${item.customerSalary}</td>
+        </tr>`
+        $('#customer-table').append(record);
+    });
+
 });
