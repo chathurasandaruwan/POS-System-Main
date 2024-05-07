@@ -1,5 +1,6 @@
 import CustomerModel from "../model/CustomerModel.js";
 import {CustomerAr} from "../db/db.js";
+var recordIndex;
 
 $('#save_btn').on('click' , ()=>{
     var customerId=$("#customerId").val();
@@ -25,6 +26,8 @@ function loadTable() {
     });
 }
 $("#customer-table").on('click','tr',function (){
+    let index = $(this).index();
+    recordIndex = index;
 
     let custIdValue = $(this).find("#customerIdValue").text();
     let custNameValue = $(this).find("#customerNameValue").text();
@@ -41,4 +44,21 @@ $("#customer-table").on('click','tr',function (){
     $("#cust_Address").val(custAddValue);
     $("#cust_Salary").val(custSalaryValue);
 
+});
+
+$('#clear_btn').on('click' , ()=>{
+    $("#customerId").val("");
+    $("#customerName").val("");
+    $("#customerAdd").val("");
+    $("#customerSalary").val("");
+
+    $("#cust_id").val("");
+    $("#cust_Name").val("");
+    $("#cust_Address").val("");
+    $("#cust_Salary").val("");
+});
+
+$("#delete_btn").on('click',()=>{
+    CustomerAr.splice(recordIndex,1);
+    loadTable();
 });
