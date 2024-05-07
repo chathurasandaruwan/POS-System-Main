@@ -690,12 +690,16 @@
 <script src="assets/lib/jquery-3.7.1.min.js.js"></script>
 <script src="main.js"></script>
 <script>
+    import CustomerModel from "model/CustomerModel";
+
     $('#save_btn').on('click' , ()=>{
         var customerId=$("#customerId").val();
         var customerName=$("#customerName").val();
         var customerAdd=$("#customerAdd").val();
         var customerSalary=$("#customerSalary").val();
 
+        let customerDetails = new CustomerModel(customerId,customerName,customerAdd,customerSalary);
+        console.log(customerDetails);
     });
 
 </script>
