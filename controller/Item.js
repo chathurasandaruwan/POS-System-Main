@@ -9,5 +9,6 @@ $("#btnSave").on('click' , () =>{
     var itemQty = $("#item_qty-main").val();
 
     let itemDetails = new ItemModel(itemCode,itemName,itemPrice,itemQty);
-
+    ItemAr.push(itemDetails);
+    console.log(ItemAr[0]);
 });
