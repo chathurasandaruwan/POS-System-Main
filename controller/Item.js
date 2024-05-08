@@ -1,5 +1,5 @@
 import ItemModel from "../model/ItemModel.js";
-import {ItemAr} from "../db/db.js";
+import {CustomerAr, ItemAr} from "../db/db.js";
 
 $("#btnSave").on('click' , () =>{
 
@@ -11,4 +11,18 @@ $("#btnSave").on('click' , () =>{
     let itemDetails = new ItemModel(itemCode,itemName,itemPrice,itemQty);
     ItemAr.push(itemDetails);
     console.log(ItemAr[0]);
+    loadTable();
 });
+
+function loadTable() {
+    $('#item-table').empty();
+    ItemAr.map((item,index) =>{
+        var record=`<tr>
+            <td id="item_codeValue">${item.item_code}</td>
+            <td id="item_NameValue">${item.item_Name}</td>
+            <td id="item_priceValue">${item.item_price}</td>
+            <td id="item_qtyValue">${item.item_qty}</td>
+        </tr>`
+        $('#item-table').append(record);
+    });
+}
