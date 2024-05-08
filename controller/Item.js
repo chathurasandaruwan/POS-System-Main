@@ -49,5 +49,17 @@ $("#item-table").on('click','tr',function (){
 });
 
 $("#btnUpdate").on('click' , () =>{
-    console.log("update")
+    var itemCode = $("#item_code").val();
+    var itemName = $("#item_Name").val();
+    var itemPrice = $("#item_price").val();
+    var itemQty = $("#item_qty").val();
+
+    let itemObj = ItemAr[recordIndex];
+
+    itemObj.item_code = itemCode;
+    itemObj.item_Name = itemName;
+    itemObj.item_price = itemPrice;
+    itemObj.item_qty = itemQty;
+
+    loadTable();
 });
