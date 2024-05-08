@@ -12,6 +12,7 @@ $("#btnSave").on('click' , () =>{
     ItemAr.push(itemDetails);
     // console.log(ItemAr[0]);
     loadTable();
+    clearInputs();
 });
 
 function loadTable() {
@@ -61,5 +62,23 @@ $("#btnUpdate").on('click' , () =>{
     itemObj.item_price = itemPrice;
     itemObj.item_qty = itemQty;
 
+    $("#exampleModal2").modal("hide");
     loadTable();
+    clearInputs()
 });
+
+$("#btnClear").on('click' , () =>{
+    clearInputs();
+});
+
+function clearInputs() {
+    $("#item_code-main").val("");
+    $("#item_Name-main").val("");
+    $("#item_price-main").val("");
+    $("#item_qty-main").val("");
+
+    $("#item_code").val("");
+    $("#item_Name").val("");
+    $("#item_price").val("");
+    $("#item_qty").val("");
+}
