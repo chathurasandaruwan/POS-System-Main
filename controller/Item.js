@@ -82,3 +82,9 @@ function clearInputs() {
     $("#item_price").val("");
     $("#item_qty").val("");
 }
+
+$("#btnDelete").on('click',()=>{
+    ItemAr.splice(recordIndex,1);
+    loadTable();
+    clearInputs();
+});
