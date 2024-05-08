@@ -10,7 +10,7 @@ $('#save_btn').on('click' , ()=>{
 
     let customerDetails = new CustomerModel(customerId,customerName,customerAdd,customerSalary);
     CustomerAr.push(customerDetails);
-    console.log(CustomerAr[0]);
+    // console.log(CustomerAr[0]);
     loadTable();
     clearInputs();
 });

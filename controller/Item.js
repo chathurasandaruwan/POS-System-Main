@@ -10,7 +10,6 @@ $("#btnSave").on('click' , () =>{
 
     let itemDetails = new ItemModel(itemCode,itemName,itemPrice,itemQty);
     ItemAr.push(itemDetails);
-    // console.log(ItemAr[0]);
     loadTable();
     clearInputs();
 });
