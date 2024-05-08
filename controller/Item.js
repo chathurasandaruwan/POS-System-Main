@@ -10,7 +10,7 @@ $("#btnSave").on('click' , () =>{
 
     let itemDetails = new ItemModel(itemCode,itemName,itemPrice,itemQty);
     ItemAr.push(itemDetails);
-    console.log(ItemAr[0]);
+    // console.log(ItemAr[0]);
     loadTable();
 });
 
@@ -46,5 +46,8 @@ $("#item-table").on('click','tr',function (){
     $("#item_price").val(itemPriceValue);
     $("#item_qty").val(itemQtyValue);
 
+});
 
+$("#btnUpdate").on('click' , () =>{
+    console.log("update")
 });
