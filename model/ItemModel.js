@@ -1,4 +1,4 @@
-class ItemModel {
+export default class ItemModel {
 
     constructor(item_code,item_Name,item_price,item_qty) {
         this._item_code = item_code;
