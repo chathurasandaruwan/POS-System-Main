@@ -6,6 +6,7 @@ $("#btnSave").on('click' , () =>{
     var itemName = $("#item_Name-main").val();
     var itemPrice = $("#item_price-main").val();
     var itemQty = $("#item_qty-main").val();
-    console.log(itemCode);
+
+    let itemDetails = new ItemModel(itemCode,itemName,itemPrice,itemQty);
 
 });
