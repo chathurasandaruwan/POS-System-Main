@@ -1,6 +1,6 @@
 import ItemModel from "../model/ItemModel.js";
 import {CustomerAr, ItemAr} from "../db/db.js";
-
+let recordIndex ;
 $("#btnSave").on('click' , () =>{
 
     var itemCode = $("#item_code-main").val();
@@ -26,3 +26,25 @@ function loadTable() {
         $('#item-table').append(record);
     });
 }
+
+$("#item-table").on('click','tr',function (){
+    let index = $(this).index();
+    recordIndex = index;
+
+    let itemCodeValue = $(this).find("#item_codeValue").text();
+    let itemNameValue = $(this).find("#item_NameValue").text();
+    let itemPriceValue = $(this).find("#item_priceValue").text();
+    let itemQtyValue = $(this).find("#item_qtyValue").text();
+
+    $("#item_code-main").val(itemCodeValue);
+    $("#item_Name-main").val(itemNameValue);
+    $("#item_price-main").val(itemPriceValue);
+    $("#item_qty-main").val(itemQtyValue);
+
+    $("#item_code").val(itemCodeValue);
+    $("#item_Name").val(itemNameValue);
+    $("#item_price").val(itemPriceValue);
+    $("#item_qty").val(itemQtyValue);
+
+
+});
