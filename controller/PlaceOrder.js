@@ -1,11 +1,8 @@
+import {CustomerAr} from "../db/db.js";
 
- // $('#inputState').setAttribute("C005");
-
-let testAr = [1,2,3,4,5,6];
-
- for (let i = 0; i < 10; i++) {
+ for (let i = 0; i < CustomerAr.length; i++) {
   $('#inputState').append($('<option>', {
    value: i,
-   text: testAr[i]
+   text: CustomerAr[i].customerId
   }));
  }
