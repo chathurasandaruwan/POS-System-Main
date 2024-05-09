@@ -58,5 +58,19 @@ $("#addToCart_btn").on('click' , () => {
  let placeOrderDetails = new PlaceOrderModel(itemCodeVal,itemNameVal,itemPriceVal,qtyVal,itemTotal);
  PlaceOrderAr.push(placeOrderDetails);
  console.log(PlaceOrderAr[0]);
-
+loadTable()
 });
+
+function loadTable() {
+ $('#placeOrder-table').empty();
+ PlaceOrderAr.map((item,index) =>{
+  var record=`<tr>
+            <td>${item.itemCode}</td>
+            <td>${item.itemName}</td>
+            <td>${item.price}</td>
+            <td>${item.qty}</td>
+            <td>${item.total}</td>
+        </tr>`
+  $('#placeOrder-table').append(record);
+ });
+}
