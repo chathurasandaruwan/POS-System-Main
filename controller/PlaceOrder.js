@@ -55,9 +55,21 @@ $("#addToCart_btn").on('click' , () => {
  let qtyVal = $("#qty").val();
  let itemTotal = itemPriceVal*qtyVal;
 
+ for (let i = 0; i < PlaceOrderAr.length; i++) {
+  console.log(PlaceOrderAr[i].itemCode);
+  if (PlaceOrderAr[i].itemCode === itemCodeVal){
+   var placeOrderObj = PlaceOrderAr[i];
+   placeOrderObj.qty = Number(qtyVal) + Number(PlaceOrderAr[i].qty);
+
+   // PlaceOrderAr[i].qty = PlaceOrderAr[i].qty+qtyVal;
+   loadTable();
+   return;
+  }
+ }
+
+
  let placeOrderDetails = new PlaceOrderModel(itemCodeVal,itemNameVal,itemPriceVal,qtyVal,itemTotal);
  PlaceOrderAr.push(placeOrderDetails);
- console.log(PlaceOrderAr[0]);
 loadTable()
 });
 
