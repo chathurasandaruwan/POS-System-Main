@@ -60,13 +60,12 @@ $("#addToCart_btn").on('click' , () => {
 
 
   for (let i = 0; i < PlaceOrderAr.length; i++) {
-  console.log(PlaceOrderAr[i].itemCode);
-  if (PlaceOrderAr[i].itemCode === itemCodeVal){
+   if (PlaceOrderAr[i].itemCode === itemCodeVal){
    var placeOrderObj = PlaceOrderAr[i];
    placeOrderObj.qty = Number(qtyVal) + Number(PlaceOrderAr[i].qty);
-
-   // PlaceOrderAr[i].qty = PlaceOrderAr[i].qty+qtyVal;
+   placeOrderObj.total = Number(itemTotal) + Number(PlaceOrderAr[i].total);
    loadTable();
+   clearItemSelectInputs();
    return;
   }
  }
@@ -74,9 +73,17 @@ $("#addToCart_btn").on('click' , () => {
 
  let placeOrderDetails = new PlaceOrderModel(itemCodeVal,itemNameVal,itemPriceVal,qtyVal,itemTotal);
  PlaceOrderAr.push(placeOrderDetails);
-loadTable()
+loadTable();
+clearItemSelectInputs();
 });
 
+function clearItemSelectInputs() {
+ $("#itemCode").val("");
+ $("#itemName").val("");
+ $("#price").val("");
+ $("#qtyOH").val("");
+ $("#qty").val("");
+}
 function loadTable() {
  $('#placeOrder-table').empty();
  PlaceOrderAr.map((item,index) =>{
