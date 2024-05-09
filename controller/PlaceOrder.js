@@ -46,3 +46,14 @@ $("#item_inputState").on('click','option',function (){
  $("#qtyOH").val(itemQty);
 
 });
+
+$("#addToCart_btn").on('click' , () => {
+ let itemCodeVal = $("#itemCode").val();
+ let itemNameVal = $("#itemName").val();
+ let itemPriceVal = $("#price").val();
+ let qtyVal = $("#qty").val();
+ let itemTotal = itemPriceVal*qtyVal;
+
+
+
+});
