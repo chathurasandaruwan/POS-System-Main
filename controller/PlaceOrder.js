@@ -55,7 +55,11 @@ $("#addToCart_btn").on('click' , () => {
  let qtyVal = $("#qty").val();
  let itemTotal = itemPriceVal*qtyVal;
 
- for (let i = 0; i < PlaceOrderAr.length; i++) {
+ let itemIndex = ItemAr.findIndex(item => item.item_code === itemCodeVal);
+ if (itemIndex !== -1) ItemAr[itemIndex].item_qty -= qtyVal;
+
+
+  for (let i = 0; i < PlaceOrderAr.length; i++) {
   console.log(PlaceOrderAr[i].itemCode);
   if (PlaceOrderAr[i].itemCode === itemCodeVal){
    var placeOrderObj = PlaceOrderAr[i];
