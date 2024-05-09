@@ -1,5 +1,6 @@
 import CustomerModel from "../model/CustomerModel.js";
 import {CustomerAr} from "../db/db.js";
+import {refresh} from "./PlaceOrder.js";
 var recordIndex;
 
 $('#save_btn').on('click' , ()=>{
@@ -10,6 +11,7 @@ $('#save_btn').on('click' , ()=>{
 
     let customerDetails = new CustomerModel(customerId,customerName,customerAdd,customerSalary);
     CustomerAr.push(customerDetails);
+    refresh();
     // console.log(CustomerAr[0]);
     loadTable();
     clearInputs();
