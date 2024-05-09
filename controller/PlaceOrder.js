@@ -1,7 +1,7 @@
 import {CustomerAr,PlaceOrderAr} from "../db/db.js";
 import {ItemAr} from "../db/db.js";
 import PlaceOrderModel from "../model/PlaceOrderModel.js";
-
+import {reloadItemTable} from "./Item.js";
 export function refreshCustomers() {
   $('#customer_inputState').empty();
   for (let i = 0; i < CustomerAr.length; i++) {
@@ -65,6 +65,7 @@ $("#addToCart_btn").on('click' , () => {
    placeOrderObj.qty = Number(qtyVal) + Number(PlaceOrderAr[i].qty);
    placeOrderObj.total = Number(itemTotal) + Number(PlaceOrderAr[i].total);
    loadTable();
+   reloadItemTable();
    clearItemSelectInputs();
    return;
   }
@@ -73,6 +74,7 @@ $("#addToCart_btn").on('click' , () => {
 
  let placeOrderDetails = new PlaceOrderModel(itemCodeVal,itemNameVal,itemPriceVal,qtyVal,itemTotal);
  PlaceOrderAr.push(placeOrderDetails);
+ reloadItemTable();
 loadTable();
 clearItemSelectInputs();
 });
