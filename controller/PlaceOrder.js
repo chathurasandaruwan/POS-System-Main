@@ -33,3 +33,16 @@ export function refreshItems() {
   }));
  }
 }
+$("#item_inputState").on('click','option',function (){
+ let index = $(this).index();
+ let itemCode = ItemAr[index].item_code;
+ let itemName = ItemAr[index].item_Name;
+ let itemPrice = ItemAr[index].item_price;
+ let itemQty = ItemAr[index].item_qty;
+
+ $("#itemCode").val(itemCode);
+ $("#itemName").val(itemName);
+ $("#price").val(itemPrice);
+ $("#qtyOH").val(itemQty);
+
+});
