@@ -1,6 +1,7 @@
 import {CustomerAr} from "../db/db.js";
+import {ItemAr} from "../db/db.js";
 
- export function refreshCustomers() {
+export function refreshCustomers() {
   $('#customer_inputState').empty();
   for (let i = 0; i < CustomerAr.length; i++) {
    $('#customer_inputState').append($('<option>', {
@@ -23,4 +24,12 @@ $("#customer_inputState").on('click','option',function (){
  $("#C_address").val(customerAdd);
 
 });
-
+export function refreshItems() {
+ $('#item_inputState').empty();
+ for (let i = 0; i < ItemAr.length; i++) {
+  $('#item_inputState').append($('<option>', {
+   value: i,
+   text: ItemAr[i].item_code
+  }));
+ }
+}

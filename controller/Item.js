@@ -1,5 +1,6 @@
 import ItemModel from "../model/ItemModel.js";
-import {CustomerAr, ItemAr} from "../db/db.js";
+import {ItemAr} from "../db/db.js";
+import {refreshItems} from "./PlaceOrder.js";
 let recordIndex ;
 $("#btnSave").on('click' , () =>{
 
@@ -10,6 +11,7 @@ $("#btnSave").on('click' , () =>{
 
     let itemDetails = new ItemModel(itemCode,itemName,itemPrice,itemQty);
     ItemAr.push(itemDetails);
+    refreshItems();
     loadTable();
     clearInputs();
 });
