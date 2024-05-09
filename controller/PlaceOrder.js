@@ -1,7 +1,6 @@
 import {CustomerAr} from "../db/db.js";
 
- export function refresh() {
-  console.log("refreshed")
+ export function refreshCustomers() {
   $('#customer_inputState').empty();
   for (let i = 0; i < CustomerAr.length; i++) {
    $('#customer_inputState').append($('<option>', {
