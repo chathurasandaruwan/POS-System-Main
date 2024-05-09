@@ -13,7 +13,12 @@ import {CustomerAr} from "../db/db.js";
 
 $("#inputState").on('click','option',function (){
  let index = $(this).index();
- console.log(index);
+ // console.log(CustomerAr[index]);
+ let customerId = CustomerAr[index].customerId;
+ let customerName = CustomerAr[index].customerName;
+ let customerAdd = CustomerAr[index].customerAdd;
+ let customerSalary = CustomerAr[index].customerSalary;
 
+ console.log(customerSalary);
 });
 
