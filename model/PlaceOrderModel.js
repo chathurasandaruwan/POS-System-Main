@@ -1,4 +1,4 @@
-class PlaceOrderModel {
+export default class PlaceOrderModel {
 
     constructor(itemCode,itemName,price,qty,total) {
         this._itemCode = itemCode;

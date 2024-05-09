@@ -1,5 +1,6 @@
 import {CustomerAr} from "../db/db.js";
 import {ItemAr} from "../db/db.js";
+import PlaceOrderModel from "../model/PlaceOrderModel.js";
 
 export function refreshCustomers() {
   $('#customer_inputState').empty();
@@ -54,6 +55,7 @@ $("#addToCart_btn").on('click' , () => {
  let qtyVal = $("#qty").val();
  let itemTotal = itemPriceVal*qtyVal;
 
+ let placeOrderDetails = new PlaceOrderModel(itemCodeVal,itemNameVal,itemPriceVal,qtyVal,itemTotal);
 
 
 });
