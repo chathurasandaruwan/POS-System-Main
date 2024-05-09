@@ -10,3 +10,10 @@ import {CustomerAr} from "../db/db.js";
    }));
   }
  }
+
+$("#inputState").on('click','option',function (){
+ let index = $(this).index();
+ console.log(index);
+
+});
+
