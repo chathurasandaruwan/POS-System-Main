@@ -53,14 +53,15 @@ $("#addToCart_btn").on('click' , () => {
  let itemNameVal = $("#itemName").val();
  let itemPriceVal = $("#price").val();
  let qtyVal = $("#qty").val();
+ let qtyOHVal = $("#qtyOH").val();
  let itemTotal = itemPriceVal*qtyVal;
-
+if (qtyOHVal > 0) {
  let itemIndex = ItemAr.findIndex(item => item.item_code === itemCodeVal);
  if (itemIndex !== -1) ItemAr[itemIndex].item_qty -= qtyVal;
 
 
-  for (let i = 0; i < PlaceOrderAr.length; i++) {
-   if (PlaceOrderAr[i].itemCode === itemCodeVal){
+ for (let i = 0; i < PlaceOrderAr.length; i++) {
+  if (PlaceOrderAr[i].itemCode === itemCodeVal) {
    var placeOrderObj = PlaceOrderAr[i];
    placeOrderObj.qty = Number(qtyVal) + Number(PlaceOrderAr[i].qty);
    placeOrderObj.total = Number(itemTotal) + Number(PlaceOrderAr[i].total);
@@ -72,11 +73,14 @@ $("#addToCart_btn").on('click' , () => {
  }
 
 
- let placeOrderDetails = new PlaceOrderModel(itemCodeVal,itemNameVal,itemPriceVal,qtyVal,itemTotal);
+ let placeOrderDetails = new PlaceOrderModel(itemCodeVal, itemNameVal, itemPriceVal, qtyVal, itemTotal);
  PlaceOrderAr.push(placeOrderDetails);
  reloadItemTable();
-loadTable();
-clearItemSelectInputs();
+ loadTable();
+ clearItemSelectInputs();
+}else {
+ console.log("empty qty")
+}
 });
 
 function clearItemSelectInputs() {
