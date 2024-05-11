@@ -88,6 +88,12 @@ if (qtyOHVal > 0) {
   sumTot += PlaceOrderAr[i].total;
  }
 $("#lbl-total").text(sumTot);
+ let discountPre = $('#discount').val();
+ let subTotal = sumTot * (discountPre/100);
+
+$("#lbl-subTotal").text(subTotal);
+
+
 });
 
 function clearItemSelectInputs() {
