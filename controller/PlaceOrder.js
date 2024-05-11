@@ -47,7 +47,6 @@ $("#item_inputState").on('click','option',function (){
  $("#qtyOH").val(itemQty);
 
 });
-
 $("#addToCart_btn").on('click' , () => {
  let itemCodeVal = $("#itemCode").val();
  let itemNameVal = $("#itemName").val();
@@ -55,6 +54,9 @@ $("#addToCart_btn").on('click' , () => {
  let qtyVal = $("#qty").val();
  let qtyOHVal = $("#qtyOH").val();
  let itemTotal = itemPriceVal*qtyVal;
+ let sumTot = 0;
+
+
 if (qtyOHVal > 0) {
  let itemIndex = ItemAr.findIndex(item => item.item_code === itemCodeVal);
  if (itemIndex !== -1) ItemAr[itemIndex].item_qty -= qtyVal;
@@ -69,6 +71,8 @@ if (qtyOHVal > 0) {
    reloadItemTable();
    clearItemSelectInputs();
    return;
+  }else {
+   sumTot += PlaceOrderAr[i].total;
   }
  }
 
@@ -81,6 +85,11 @@ if (qtyOHVal > 0) {
 }else {
  console.log("empty qty")
 }
+/* let sumTot = 0;
+ for (let i = 0; i < PlaceOrderAr.length; i++) {
+  sumTot += PlaceOrderAr[i].total;
+ }
+$("#lbl-total").text(sumTot);*/
 });
 
 function clearItemSelectInputs() {
