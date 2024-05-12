@@ -100,6 +100,8 @@ if (btnText === "AddToCart"){
  loadTable();
  clearItemSelectInputs();
  $("#addToCart_btn").text("AddToCart");
+ $("#addToCart_btn").removeClass("btn-danger");
+ $("#addToCart_btn").addClass("btn-warning");
 }
 
 });
@@ -140,7 +142,12 @@ $("#placeOrder-table").on('click','tr',function (){
  $("#qty").val(qtyValue);
 
  $("#addToCart_btn").text("Remove");
- $("#addToCart_btn").css({backgroundColor : "red", color: "white" });
+ $("#addToCart_btn").removeClass("btn-warning");
+ $("#addToCart_btn").addClass("btn-danger");
+
+
+
+ // $("#addToCart_btn").css({backgroundColor : "red", color: "white"});
 
 
 });
