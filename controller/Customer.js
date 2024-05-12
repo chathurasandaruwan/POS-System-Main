@@ -16,6 +16,16 @@ $('#save_btn').on('click' , ()=>{
     // console.log(CustomerAr[0]);
     loadTable();
     clearInputs();
+    Swal.fire({
+        position: 'bottom-right',
+        icon: 'success',
+        title: 'Customer has been Save successfully..!',
+        showConfirmButton: false,
+        timer: 2000,
+        customClass: {
+            popup: 'small'
+        }
+    });
 });
 function loadTable() {
     $('#customer-table').empty();
