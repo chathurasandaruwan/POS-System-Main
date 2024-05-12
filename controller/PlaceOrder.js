@@ -89,11 +89,9 @@ if (qtyOHVal > 0) {
  }
 $("#lbl-total").text(sumTot);
  let discountPre = $('#discount').val();
- let subTotal = sumTot * (discountPre/100);
+ let subTotal = sumTot -(sumTot * (discountPre/100));
 
 $("#lbl-subTotal").text(subTotal);
-
-
 });
 
 function clearItemSelectInputs() {
