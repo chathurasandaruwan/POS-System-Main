@@ -54,9 +54,22 @@ $('#clear_btn').on('click' , ()=>{
 });
 
 $("#delete_btn").on('click',()=>{
-    CustomerAr.splice(recordIndex,1);
-    loadTable();
-    clearInputs();
+    let consent = confirm("Do you really want to delete this customer.?");
+    if (consent){
+        CustomerAr.splice(recordIndex,1);
+        loadTable();
+        clearInputs();
+        Swal.fire({
+            position: 'bottom-right',
+            icon: 'success',
+            title: 'Customer has been Delete successfully..!',
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+                popup: 'small'
+            }
+        });
+    }
 });
 
 $("#Update_btn").on('click',()=>{
@@ -77,7 +90,7 @@ $("#Update_btn").on('click',()=>{
         loadTable();
         clearInputs();
         Swal.fire({
-            position: 'top-right',
+            position: 'bottom-right',
             icon: 'success',
             title: 'Customer has been Updated successfully..!',
             showConfirmButton: false,
