@@ -96,12 +96,16 @@ if (btnText === "AddToCart"){
  $("#lbl-subTotal").text(subTotal);
 
 }else {
+ let itemIndex = ItemAr.findIndex(item => item.item_code === PlaceOrderAr[recordIndex].itemCode);
+ if (itemIndex !== -1) ItemAr[itemIndex].item_qty += Number(PlaceOrderAr[recordIndex].qty);
+ reloadItemTable();
  PlaceOrderAr.splice(recordIndex,1);
  loadTable();
  clearItemSelectInputs();
  $("#addToCart_btn").text("AddToCart");
  $("#addToCart_btn").removeClass("btn-danger");
  $("#addToCart_btn").addClass("btn-warning");
+ $("#cancel_btn").css({display:"none"});
 }
 
 });
@@ -144,10 +148,14 @@ $("#placeOrder-table").on('click','tr',function (){
  $("#addToCart_btn").text("Remove");
  $("#addToCart_btn").removeClass("btn-warning");
  $("#addToCart_btn").addClass("btn-danger");
+ $("#cancel_btn").css({display:"initial"});
 
+});
 
-
- // $("#addToCart_btn").css({backgroundColor : "red", color: "white"});
-
-
+$("#cancel_btn").on('click' , ()=>{
+ clearItemSelectInputs();
+ $("#addToCart_btn").text("AddToCart");
+ $("#addToCart_btn").removeClass("btn-danger");
+ $("#addToCart_btn").addClass("btn-warning");
+ $("#cancel_btn").css({display:"none"});
 });
