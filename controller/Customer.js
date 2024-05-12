@@ -81,8 +81,11 @@ $("#Update_btn").on('click',()=>{
             icon: 'success',
             title: 'Customer has been Updated successfully..!',
             showConfirmButton: false,
-            timer: 2000
-        })
+            timer: 2000,
+            customClass: {
+                popup: 'small'
+            }
+        });
     }
 });
 function clearInputs() {
