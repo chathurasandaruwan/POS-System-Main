@@ -2,7 +2,8 @@ import ItemModel from "../model/ItemModel.js";
 import {ItemAr} from "../db/db.js";
 import {refreshItems} from "./PlaceOrder.js";
 let recordIndex ;
-
+$('#btnDelete').prop('disabled', true);
+$('#updateMain_btn1').prop('disabled', true);
 export function reloadItemTable() {
     loadTable();
 }
@@ -61,6 +62,10 @@ $("#item-table").on('click','tr',function (){
     $("#item_price").val(itemPriceValue);
     $("#item_qty").val(itemQtyValue);
 
+    $('#btnDelete').prop('disabled', false);
+    $('#updateMain_btn1').prop('disabled', false);
+    $('#btnSave').prop('disabled', true);
+
 });
 
 $("#btnUpdate").on('click' , () =>{
@@ -95,6 +100,10 @@ function clearInputs() {
     $("#item_Name").val("");
     $("#item_price").val("");
     $("#item_qty").val("");
+
+    $('#btnDelete').prop('disabled', true);
+    $('#updateMain_btn1').prop('disabled', true);
+    $('#btnSave').prop('disabled', false);
 }
 
 $("#btnDelete").on('click',()=>{
