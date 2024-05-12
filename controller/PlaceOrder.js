@@ -3,7 +3,7 @@ import {ItemAr} from "../db/db.js";
 import PlaceOrderModel from "../model/PlaceOrderModel.js";
 import {reloadItemTable} from "./Item.js";
 var recordIndex;
-let sumTot = 0;
+// let sumTot = 0;
 $('#discount').on("keydown keyup", function (e) {
  setSubTotalLbl();
 });
@@ -119,7 +119,7 @@ if (btnText === "AddToCart"){
 }
 });
 function setValuesToTotalLbl() {
- // let sumTot = 0;
+ let sumTot = 0;
  for (let i = 0; i < PlaceOrderAr.length; i++) {
   sumTot += PlaceOrderAr[i].total;
  }
@@ -131,6 +131,7 @@ function setValuesToTotalLbl() {
 }
 function setSubTotalLbl() {
  if ($('#discount').val().length != 0){
+  let sumTot = Number($("#lbl-total").text());
   let discountPre = $('#discount').val();
   let subTotal = sumTot -(sumTot * (discountPre/100));
 
