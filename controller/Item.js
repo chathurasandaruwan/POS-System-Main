@@ -21,7 +21,7 @@ $("#btnSave").on('click' , () =>{
     Swal.fire({
         position: 'bottom-right',
         icon: 'success',
-        title: 'Customer has been Save successfully..!',
+        title: 'Item has been Saved successfully..!',
         showConfirmButton: false,
         timer: 2000,
         customClass: {
@@ -69,21 +69,34 @@ $("#item-table").on('click','tr',function (){
 });
 
 $("#btnUpdate").on('click' , () =>{
-    var itemCode = $("#item_code").val();
-    var itemName = $("#item_Name").val();
-    var itemPrice = $("#item_price").val();
-    var itemQty = $("#item_qty").val();
+    let consent = confirm("Do you really want to update this item.?");
+    if (consent){
+        var itemCode = $("#item_code").val();
+        var itemName = $("#item_Name").val();
+        var itemPrice = $("#item_price").val();
+        var itemQty = $("#item_qty").val();
 
-    let itemObj = ItemAr[recordIndex];
+        let itemObj = ItemAr[recordIndex];
 
-    itemObj.item_code = itemCode;
-    itemObj.item_Name = itemName;
-    itemObj.item_price = itemPrice;
-    itemObj.item_qty = itemQty;
+        itemObj.item_code = itemCode;
+        itemObj.item_Name = itemName;
+        itemObj.item_price = itemPrice;
+        itemObj.item_qty = itemQty;
 
-    $("#exampleModal2").modal("hide");
-    loadTable();
-    clearInputs()
+        $("#exampleModal2").modal("hide");
+        loadTable();
+        clearInputs();
+        Swal.fire({
+            position: 'bottom-right',
+            icon: 'success',
+            title: 'Item has been Updated successfully..!',
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+                popup: 'small'
+            }
+        });
+    }
 });
 
 $("#btnClear").on('click' , () =>{
@@ -107,7 +120,18 @@ function clearInputs() {
 }
 
 $("#btnDelete").on('click',()=>{
+    let consent = confirm("Do you really want to delete this item.?");
     ItemAr.splice(recordIndex,1);
     loadTable();
     clearInputs();
+    Swal.fire({
+        position: 'bottom-right',
+        icon: 'success',
+        title: 'Item has been Deleted successfully..!',
+        showConfirmButton: false,
+        timer: 2000,
+        customClass: {
+            popup: 'small'
+        }
+    });
 });
