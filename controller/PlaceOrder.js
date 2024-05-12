@@ -3,6 +3,13 @@ import {ItemAr} from "../db/db.js";
 import PlaceOrderModel from "../model/PlaceOrderModel.js";
 import {reloadItemTable} from "./Item.js";
 var recordIndex;
+let sumTot = 0;
+$('#discount').on("keydown keyup", function (e) {
+ setSubTotalLbl();
+});
+$('#cash').on("keydown keyup", function (e) {
+ setBalanceLbl();
+});
 export function refreshCustomers() {
   $('#customer_inputState').empty();
   for (let i = 0; i < CustomerAr.length; i++) {
@@ -112,7 +119,7 @@ if (btnText === "AddToCart"){
 }
 });
 function setValuesToTotalLbl() {
- let sumTot = 0;
+ // let sumTot = 0;
  for (let i = 0; i < PlaceOrderAr.length; i++) {
   sumTot += PlaceOrderAr[i].total;
  }
@@ -121,6 +128,28 @@ function setValuesToTotalLbl() {
  let subTotal = sumTot -(sumTot * (discountPre/100));
 
  $("#lbl-subTotal").text(subTotal);
+}
+function setSubTotalLbl() {
+ if ($('#discount').val().length != 0){
+  let discountPre = $('#discount').val();
+  let subTotal = sumTot -(sumTot * (discountPre/100));
+
+  $("#lbl-subTotal").text(subTotal);
+ }
+}
+function setBalanceLbl() {
+ if ($('#cash').val().length!=0 && ($('#lbl-subTotal').text().length!=0)){
+  let subTotal = Number( $("#lbl-subTotal").text());
+  let cash = Number( $("#cash").val());
+  console.log(subTotal);
+  console.log(cash)
+  let balance = cash - subTotal;
+  $('#Balance').val(balance);
+
+ }else {
+
+  $('#Balance').val(0.00);
+ }
 }
 
 function clearItemSelectInputs() {
