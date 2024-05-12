@@ -2,7 +2,8 @@ import CustomerModel from "../model/CustomerModel.js";
 import {CustomerAr} from "../db/db.js";
 import {refreshCustomers} from "./PlaceOrder.js";
 var recordIndex;
-
+$('#delete_btn').prop('disabled', true);
+$('#updateMain_btn').prop('disabled', true);
 $('#save_btn').on('click' , ()=>{
     var customerId=$("#customerId").val();
     var customerName=$("#customerName").val();
@@ -46,6 +47,10 @@ $("#customer-table").on('click','tr',function (){
     $("#cust_Name").val(custNameValue);
     $("#cust_Address").val(custAddValue);
     $("#cust_Salary").val(custSalaryValue);
+
+    $('#delete_btn').prop('disabled', false);
+    $('#updateMain_btn').prop('disabled', false);
+    $('#save_btn').prop('disabled', true);
 
 });
 
@@ -111,4 +116,8 @@ function clearInputs() {
     $("#cust_Name").val("");
     $("#cust_Address").val("");
     $("#cust_Salary").val("");
+
+    $('#delete_btn').prop('disabled', true);
+    $('#updateMain_btn').prop('disabled', true);
+    $('#save_btn').prop('disabled', false);
 }
