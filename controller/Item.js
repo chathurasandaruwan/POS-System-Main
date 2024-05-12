@@ -17,6 +17,16 @@ $("#btnSave").on('click' , () =>{
     refreshItems();
     loadTable();
     clearInputs();
+    Swal.fire({
+        position: 'bottom-right',
+        icon: 'success',
+        title: 'Customer has been Save successfully..!',
+        showConfirmButton: false,
+        timer: 2000,
+        customClass: {
+            popup: 'small'
+        }
+    });
 });
 
 function loadTable() {
