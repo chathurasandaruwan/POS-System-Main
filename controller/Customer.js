@@ -60,20 +60,30 @@ $("#delete_btn").on('click',()=>{
 });
 
 $("#Update_btn").on('click',()=>{
-    var custId=$("#cust_id").val();
-    var custName=$("#cust_Name").val();
-    var custAdd=$("#cust_Address").val();
-    var custSalary=$("#cust_Salary").val();
+    let consent = confirm("Do you really want to update this customer.?");
+    if (consent){
+        var custId=$("#cust_id").val();
+        var custName=$("#cust_Name").val();
+        var custAdd=$("#cust_Address").val();
+        var custSalary=$("#cust_Salary").val();
 
-    var customerObj = CustomerAr[recordIndex];
-    customerObj.customerId = custId;
-    customerObj.customerName = custName;
-    customerObj.customerAdd = custAdd;
-    customerObj.customerSalary = custSalary;
+        var customerObj = CustomerAr[recordIndex];
+        customerObj.customerId = custId;
+        customerObj.customerName = custName;
+        customerObj.customerAdd = custAdd;
+        customerObj.customerSalary = custSalary;
 
-    $("#exampleModal1").modal("hide");
-    loadTable();
-    clearInputs();
+        $("#exampleModal1").modal("hide");
+        loadTable();
+        clearInputs();
+        Swal.fire({
+            position: 'top-right',
+            icon: 'success',
+            title: 'Customer has been Updated successfully..!',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    }
 });
 function clearInputs() {
     $("#customerId").val("");
