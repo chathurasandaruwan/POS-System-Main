@@ -85,7 +85,8 @@ if (btnText === "AddToCart"){
  }else {
   console.log("empty qty");
  }
- let sumTot = 0;
+ setValuesToTotalLbl();
+ /*let sumTot = 0;
  for (let i = 0; i < PlaceOrderAr.length; i++) {
   sumTot += PlaceOrderAr[i].total;
  }
@@ -93,9 +94,10 @@ if (btnText === "AddToCart"){
  let discountPre = $('#discount').val();
  let subTotal = sumTot -(sumTot * (discountPre/100));
 
- $("#lbl-subTotal").text(subTotal);
+ $("#lbl-subTotal").text(subTotal);*/
 
 }else {
+ // removeFromCart
  let itemIndex = ItemAr.findIndex(item => item.item_code === PlaceOrderAr[recordIndex].itemCode);
  if (itemIndex !== -1) ItemAr[itemIndex].item_qty += Number(PlaceOrderAr[recordIndex].qty);
  reloadItemTable();
@@ -106,9 +108,20 @@ if (btnText === "AddToCart"){
  $("#addToCart_btn").removeClass("btn-danger");
  $("#addToCart_btn").addClass("btn-warning");
  $("#cancel_btn").css({display:"none"});
+ setValuesToTotalLbl();
 }
-
 });
+function setValuesToTotalLbl() {
+ let sumTot = 0;
+ for (let i = 0; i < PlaceOrderAr.length; i++) {
+  sumTot += PlaceOrderAr[i].total;
+ }
+ $("#lbl-total").text(sumTot);
+ let discountPre = $('#discount').val();
+ let subTotal = sumTot -(sumTot * (discountPre/100));
+
+ $("#lbl-subTotal").text(subTotal);
+}
 
 function clearItemSelectInputs() {
  $("#itemCode").val("");
