@@ -65,7 +65,7 @@ $("#addToCart_btn").on('click' , () => {
 let btnText =  $("#addToCart_btn").text();
 
 if (btnText === "AddToCart"){
- if (qtyOHVal > 0) {
+ if (qtyOHVal > 0 && qtyOHVal >= qtyVal) {
   let itemIndex = ItemAr.findIndex(item => item.item_code === itemCodeVal);
   if (itemIndex !== -1) ItemAr[itemIndex].item_qty -= qtyVal;
 
@@ -93,15 +93,6 @@ if (btnText === "AddToCart"){
   console.log("empty qty");
  }
  setValuesToTotalLbl();
- /*let sumTot = 0;
- for (let i = 0; i < PlaceOrderAr.length; i++) {
-  sumTot += PlaceOrderAr[i].total;
- }
- $("#lbl-total").text(sumTot);
- let discountPre = $('#discount').val();
- let subTotal = sumTot -(sumTot * (discountPre/100));
-
- $("#lbl-subTotal").text(subTotal);*/
 
 }else {
  // removeFromCart
