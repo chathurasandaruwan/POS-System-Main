@@ -4,7 +4,7 @@ import PlaceOrderModel from "../model/PlaceOrderModel.js";
 import {reloadItemTable} from "./Item.js";
 import OrderModel from "../model/OrderModel.js";
 var recordIndex;
-// let sumTot = 0;
+clearAllInputs();
 $('#discount').on("keydown keyup", function (e) {
  setSubTotalLbl();
 });
@@ -154,6 +154,7 @@ function clearItemSelectInputs() {
  $("#price").val("");
  $("#qtyOH").val("");
  $("#qty").val("");
+ $("#item_inputState").val("");
 }
 function loadTable() {
  $('#placeOrder-table').empty();
@@ -211,4 +212,23 @@ $("#btnPurchase").on('click' , ()=>{
   console.log(OrderAr[i]);
  }
  PlaceOrderAr.length = 0;
+ clearAllInputs();
 });
+
+function clearAllInputs() {
+ clearItemSelectInputs();
+ $("#customer_inputState").val("");
+ $('#oId').val("");
+ $('#date').val("");
+ $("#C_id").val("");
+ $('#placeOrder-table').empty();
+ $('#cash').val("");
+ $('#lbl-subTotal').text("");
+ $('#discount').val("");
+ $("#C_name").val("");
+ $("#C_salary").val("");
+ $("#C_address").val('');
+ $('#Balance').val("");
+ $("#lbl-total").text("");
+
+}
