@@ -1,21 +1,11 @@
 export default class OrderModel {
     constructor(orderId,itemCode,qty,orderDate,customerId) {
-        this.ordreId =orderId;
         this._orderId = orderId;
         this._itemCode = itemCode;
         this._qty = qty;
         this._orderDate = orderDate;
         this._customerId = customerId;
     }
-
-    get orderId() {
-        return this._orderId;
-    }
-
-    set orderId(value) {
-        this._orderId = value;
-    }
-
     get itemCode() {
         return this._itemCode;
     }

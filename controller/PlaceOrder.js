@@ -60,10 +60,12 @@ $("#addToCart_btn").on('click' , () => {
  let itemCodeVal = $("#itemCode").val();
  let itemNameVal = $("#itemName").val();
  let itemPriceVal = $("#price").val();
- let qtyVal = $("#qty").val();
- let qtyOHVal = $("#qtyOH").val();
+ let qtyVal = Number($("#qty").val());
+ let qtyOHVal = Number($("#qtyOH").val());
  let itemTotal = itemPriceVal*qtyVal;
 let btnText =  $("#addToCart_btn").text();
+ console.log(qtyVal)
+ console.log(qtyOHVal)
 
 if (btnText === "AddToCart"){
  if (qtyOHVal > 0 && qtyOHVal >= qtyVal) {
@@ -91,7 +93,8 @@ if (btnText === "AddToCart"){
    clearItemSelectInputs();
   }
  }else {
-  console.log("empty qty");
+  // console.log("empty qty");
+  alert("empty qty");
  }
  setValuesToTotalLbl();
 
@@ -193,4 +196,19 @@ $("#cancel_btn").on('click' , ()=>{
  $("#addToCart_btn").removeClass("btn-danger");
  $("#addToCart_btn").addClass("btn-warning");
  $("#cancel_btn").css({display:"none"});
+});
+
+$("#btnPurchase").on('click' , ()=>{
+ for (let i = 0; i < PlaceOrderAr.length; i++) {
+  let orderId = $('#oId').val();
+  let itemCode = PlaceOrderAr[i].itemCode;
+  let qty = PlaceOrderAr[i].qty;
+  let orderDate = $('#date').val();
+  let customerId = $("#C_id").val();
+
+  let orderDetails = new OrderModel(orderId,itemCode,qty,orderDate,customerId);
+  OrderAr.push(orderDetails);
+  console.log(OrderAr[i]);
+ }
+ PlaceOrderAr.length = 0;
 });
