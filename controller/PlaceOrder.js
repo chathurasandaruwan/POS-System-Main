@@ -94,7 +94,17 @@ if (btnText === "AddToCart"){
   }
  }else {
   // console.log("empty qty");
-  alert("empty qty");
+  Swal.fire({
+   position: 'bottom-right',
+   icon: "error",
+   title:"empty qty !",
+   text: "please try again !",
+   showConfirmButton: false,
+   timer: 2000,
+   customClass: {
+    popup: 'small'
+   }
+  });
  }
  setValuesToTotalLbl();
 
@@ -200,6 +210,7 @@ $("#cancel_btn").on('click' , ()=>{
 });
 
 $("#btnPurchase").on('click' , ()=>{
+ let j = OrderAr.length;
  for (let i = 0; i < PlaceOrderAr.length; i++) {
   let orderId = $('#oId').val();
   let itemCode = PlaceOrderAr[i].itemCode;
@@ -209,7 +220,7 @@ $("#btnPurchase").on('click' , ()=>{
 
   let orderDetails = new OrderModel(orderId,itemCode,qty,orderDate,customerId);
   OrderAr.push(orderDetails);
-  console.log(OrderAr[i]);
+  console.log(OrderAr[j++]);
  }
  PlaceOrderAr.length = 0;
  clearAllInputs();
