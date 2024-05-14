@@ -5,6 +5,7 @@ import {reloadItemTable} from "./Item.js";
 import OrderModel from "../model/OrderModel.js";
 var recordIndex;
 clearAllInputs();
+// $('#oId').val(generateNextOrderId());
 $('#discount').on("keydown keyup", function (e) {
  setSubTotalLbl();
 });
@@ -228,8 +229,10 @@ $("#btnPurchase").on('click' , ()=>{
 
 function clearAllInputs() {
  clearItemSelectInputs();
+ let orderId = generateNextOrderId();
+ console.log(orderId)
  $("#customer_inputState").val("");
- $('#oId').val("");
+ $('#oId').val(orderId);
  $('#date').val("");
  $("#C_id").val("");
  $('#placeOrder-table').empty();
@@ -242,4 +245,18 @@ function clearAllInputs() {
  $('#Balance').val("");
  $("#lbl-total").text("");
 
+}
+function generateNextOrderId() {
+ if (OrderAr.length > 0){
+  let orderId = OrderAr[OrderAr.length-1]._orderId;
+  let strings = orderId.split("OID-");
+  let id= parseInt(strings[1]);
+  console.log(id);
+  ++id;
+  let digit = id.toString().padStart(3, '0');
+
+  return "OID-" + digit;
+ }else {
+  return "OID-001";
+ }
 }
