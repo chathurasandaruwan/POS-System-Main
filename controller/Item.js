@@ -1,9 +1,10 @@
 import ItemModel from "../model/ItemModel.js";
-import {ItemAr} from "../db/db.js";
+import {CustomerAr, ItemAr} from "../db/db.js";
 import {refreshItems} from "./PlaceOrder.js";
 let recordIndex ;
 $('#btnDelete').prop('disabled', true);
 $('#updateMain_btn1').prop('disabled', true);
+clearInputs();
 export function reloadItemTable() {
     loadTable();
 }
@@ -104,7 +105,8 @@ $("#btnClear").on('click' , () =>{
 });
 
 function clearInputs() {
-    $("#item_code-main").val("");
+    var itemCode = generateNextItemCode();
+    $("#item_code-main").val(itemCode);
     $("#item_Name-main").val("");
     $("#item_price-main").val("");
     $("#item_qty-main").val("");
@@ -135,3 +137,18 @@ $("#btnDelete").on('click',()=>{
         }
     });
 });
+
+function generateNextItemCode() {
+    if (ItemAr.length > 0){
+        let itemCode = ItemAr[ItemAr.length-1]._item_code;
+        let strings = itemCode.split("IID-");
+        let id= parseInt(strings[1]);
+        console.log(id);
+        ++id;
+        let digit = id.toString().padStart(3, '0');
+
+        return "IID-" + digit;
+    }else {
+        return "IID-001";
+    }
+}
