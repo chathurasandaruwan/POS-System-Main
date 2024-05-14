@@ -228,6 +228,16 @@ $("#btnPurchase").on('click' , ()=>{
  PlaceOrderAr.length = 0;
  clearAllInputs();
  loadOrderDetailTable();
+ Swal.fire({
+  position: 'bottom-right',
+  icon: 'success',
+  title: 'Order has been Saved successfully..!',
+  showConfirmButton: false,
+  timer: 2000,
+  customClass: {
+   popup: 'small'
+  }
+ });
 });
 
 function clearAllInputs() {
