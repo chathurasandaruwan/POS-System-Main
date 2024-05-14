@@ -1,9 +1,10 @@
 import CustomerModel from "../model/CustomerModel.js";
-import {CustomerAr} from "../db/db.js";
+import {CustomerAr, OrderAr} from "../db/db.js";
 import {refreshCustomers} from "./PlaceOrder.js";
 var recordIndex;
 $('#delete_btn').prop('disabled', true);
 $('#updateMain_btn').prop('disabled', true);
+clearInputs();
 $('#save_btn').on('click' , ()=>{
     var customerId=$("#customerId").val();
     var customerName=$("#customerName").val();
@@ -117,7 +118,8 @@ $("#Update_btn").on('click',()=>{
     }
 });
 function clearInputs() {
-    $("#customerId").val("");
+    var customerId = generateNextCustomerId();
+    $("#customerId").val(customerId);
     $("#customerName").val("");
     $("#customerAdd").val("");
     $("#customerSalary").val("");
@@ -130,4 +132,18 @@ function clearInputs() {
     $('#delete_btn').prop('disabled', true);
     $('#updateMain_btn').prop('disabled', true);
     $('#save_btn').prop('disabled', false);
+}
+function generateNextCustomerId() {
+    if (CustomerAr.length > 0){
+        let customerId = CustomerAr[CustomerAr.length-1]._customerId;
+        let strings = customerId.split("CID-");
+        let id= parseInt(strings[1]);
+        console.log(id);
+        ++id;
+        let digit = id.toString().padStart(3, '0');
+
+        return "CID-" + digit;
+    }else {
+        return "CID-001";
+    }
 }
