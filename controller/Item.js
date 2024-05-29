@@ -129,26 +129,77 @@ $("#btnUpdate").on('click' , () =>{
         var itemPrice = $("#item_price").val();
         var itemQty = $("#item_qty").val();
 
-        let itemObj = ItemAr[recordIndex];
+        const  itemVal1 = new ItemValidation();
+        const result1 = itemVal1.itemNameVal(itemName);
+        const result2 = itemVal1.itemPriceVal(itemPrice);
+        const result3 = itemVal1.itemQtyVal(itemQty);
 
-        itemObj.item_code = itemCode;
-        itemObj.item_Name = itemName;
-        itemObj.item_price = itemPrice;
-        itemObj.item_qty = itemQty;
+        $('#item_Name').removeAttr('style');
+        $('#item_price').removeAttr('style');
+        $('#item_qty').removeAttr('style');
 
-        $("#exampleModal2").modal("hide");
-        loadTable();
-        clearInputs();
-        Swal.fire({
-            position: 'bottom-right',
-            icon: 'success',
-            title: 'Item has been Updated successfully..!',
-            showConfirmButton: false,
-            timer: 2000,
-            customClass: {
-                popup: 'small'
+        if (result1.isValid){
+            if (result2.isValid){
+                if (result3.isValid){
+                    let itemObj = ItemAr[recordIndex];
+
+                    itemObj.item_code = itemCode;
+                    itemObj.item_Name = itemName;
+                    itemObj.item_price = itemPrice;
+                    itemObj.item_qty = itemQty;
+
+                    $("#exampleModal2").modal("hide");
+                    loadTable();
+                    clearInputs();
+                    Swal.fire({
+                        position: 'bottom-right',
+                        icon: 'success',
+                        title: 'Item has been Updated successfully..!',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        customClass: {
+                            popup: 'small'
+                        }
+                    });
+                }else {
+                    $('#item_qty').css({"border": "2px solid red"});
+                    Swal.fire({
+                        position: 'bottom-right',
+                        icon: 'error',
+                        title: 'invalid Qty ..!',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        customClass: {
+                            popup: 'small'
+                        }
+                    });
+                }
+            }else {
+                $('#item_price').css({"border": "2px solid red"});
+                Swal.fire({
+                    position: 'bottom-right',
+                    icon: 'error',
+                    title: 'invalid price ..!',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    customClass: {
+                        popup: 'small'
+                    }
+                });
             }
-        });
+        }else {
+            $('#item_Name').css({"border": "2px solid red"});
+            Swal.fire({
+                position: 'bottom-right',
+                icon: 'error',
+                title: 'invalid name..!',
+                showConfirmButton: false,
+                timer: 2000,
+                customClass: {
+                    popup: 'small'
+                }
+            });
+        }
     }
 });
 
