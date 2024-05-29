@@ -14,25 +14,41 @@ $('#save_btn').on('click' , ()=>{
     var customerVal = new CustomerValidation();
     const result1 = customerVal.customerNameVal(customerName);
     const  result2 = customerVal.customerAddressVal(customerAdd);
+    const  result3 =customerVal.customerSalaryVal(customerSalary);
     $('#customerName').removeAttr('style');
     $('#customerAdd').removeAttr('style');
+    $('#customerSalary').removeAttr('style');
     if (result1.isValid){
         if (result2.isValid){
-            let customerDetails = new CustomerModel(customerId,customerName,customerAdd,customerSalary);
-            CustomerAr.push(customerDetails);
-            refreshCustomers();
-            loadTable();
-            clearInputs();
-            Swal.fire({
-                position: 'bottom-right',
-                icon: 'success',
-                title: 'Customer has been Save successfully..!',
-                showConfirmButton: false,
-                timer: 2000,
-                customClass: {
-                    popup: 'small'
-                }
-            });
+            if (result3.isValid){
+                let customerDetails = new CustomerModel(customerId,customerName,customerAdd,customerSalary);
+                CustomerAr.push(customerDetails);
+                refreshCustomers();
+                loadTable();
+                clearInputs();
+                Swal.fire({
+                    position: 'bottom-right',
+                    icon: 'success',
+                    title: 'Customer has been Save successfully..!',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    customClass: {
+                        popup: 'small'
+                    }
+                });
+            }else {
+                $('#customerSalary').css({"border": "2px solid red"});
+                Swal.fire({
+                    position: 'bottom-right',
+                    icon: 'error',
+                    title: 'invalid Salary ..!',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    customClass: {
+                        popup: 'small'
+                    }
+                });
+            }
         }else {
             $('#customerAdd').css({"border": "2px solid red"});
             Swal.fire({
