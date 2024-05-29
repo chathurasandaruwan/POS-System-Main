@@ -144,25 +144,76 @@ $("#Update_btn").on('click',()=>{
         var custAdd=$("#cust_Address").val();
         var custSalary=$("#cust_Salary").val();
 
-        var customerObj = CustomerAr[recordIndex];
-        customerObj.customerId = custId;
-        customerObj.customerName = custName;
-        customerObj.customerAdd = custAdd;
-        customerObj.customerSalary = custSalary;
 
-        $("#exampleModal1").modal("hide");
-        loadTable();
-        clearInputs();
-        Swal.fire({
-            position: 'bottom-right',
-            icon: 'success',
-            title: 'Customer has been Updated successfully..!',
-            showConfirmButton: false,
-            timer: 2000,
-            customClass: {
-                popup: 'small'
+        var customerVal1 = new CustomerValidation();
+        const result1 = customerVal1.customerNameVal(custName);
+        const  result2 = customerVal1.customerAddressVal(custAdd);
+        const  result3 =customerVal1.customerSalaryVal(custSalary);
+        $('#cust_Name').removeAttr('style');
+        $('#cust_Address').removeAttr('style');
+        $('#cust_Salary').removeAttr('style');
+
+        if (result1.isValid){
+            if (result2.isValid){
+                if (result3.isValid){
+                    var customerObj = CustomerAr[recordIndex];
+                    customerObj.customerId = custId;
+                    customerObj.customerName = custName;
+                    customerObj.customerAdd = custAdd;
+                    customerObj.customerSalary = custSalary;
+
+                    $("#exampleModal1").modal("hide");
+                    loadTable();
+                    clearInputs();
+                    Swal.fire({
+                        position: 'bottom-right',
+                        icon: 'success',
+                        title: 'Customer has been Updated successfully..!',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        customClass: {
+                            popup: 'small'
+                        }
+                    });
+                }else {
+                    $('#cust_Salary').css({"border": "2px solid red"});
+                    Swal.fire({
+                        position: 'bottom-right',
+                        icon: 'error',
+                        title: 'invalid Salary ..!',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        customClass: {
+                            popup: 'small'
+                        }
+                    });
+                }
+            }else {
+                $('#cust_Address').css({"border": "2px solid red"});
+                Swal.fire({
+                    position: 'bottom-right',
+                    icon: 'error',
+                    title: 'invalid Address..!',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    customClass: {
+                        popup: 'small'
+                    }
+                });
             }
-        });
+        }else {
+            $('#cust_Name').css({"border": "2px solid red"});
+            Swal.fire({
+                position: 'bottom-right',
+                icon: 'error',
+                title: 'invalid name..!',
+                showConfirmButton: false,
+                timer: 2000,
+                customClass: {
+                    popup: 'small'
+                }
+            });
+        }
     }
 });
 function clearInputs() {
