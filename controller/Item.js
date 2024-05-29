@@ -18,23 +18,40 @@ $("#btnSave").on('click' , () =>{
 
     const  itemVal = new ItemValidation();
     const result1 = itemVal.itemNameVal(itemName);
+    const result2 = itemVal.itemPriceVal(itemPrice);
+
     $('#item_Name-main').removeAttr('style');
+    $('#item_price-main').removeAttr('style');
     if (result1.isValid){
-        let itemDetails = new ItemModel(itemCode,itemName,itemPrice,itemQty);
-        ItemAr.push(itemDetails);
-        refreshItems();
-        loadTable();
-        clearInputs();
-        Swal.fire({
-            position: 'bottom-right',
-            icon: 'success',
-            title: 'Item has been Saved successfully..!',
-            showConfirmButton: false,
-            timer: 2000,
-            customClass: {
-                popup: 'small'
-            }
-        });
+        if (result2.isValid){
+            let itemDetails = new ItemModel(itemCode,itemName,itemPrice,itemQty);
+            ItemAr.push(itemDetails);
+            refreshItems();
+            loadTable();
+            clearInputs();
+            Swal.fire({
+                position: 'bottom-right',
+                icon: 'success',
+                title: 'Item has been Saved successfully..!',
+                showConfirmButton: false,
+                timer: 2000,
+                customClass: {
+                    popup: 'small'
+                }
+            });
+        }else {
+            $('#item_price-main').css({"border": "2px solid red"});
+            Swal.fire({
+                position: 'bottom-right',
+                icon: 'error',
+                title: 'invalid price ..!',
+                showConfirmButton: false,
+                timer: 2000,
+                customClass: {
+                    popup: 'small'
+                }
+            });
+        }
     }else {
         $('#item_Name-main').css({"border": "2px solid red"});
         Swal.fire({

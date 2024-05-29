@@ -11,4 +11,16 @@ export class ItemValidation {
             };
         }
     }
+    itemPriceVal(price) {
+        const namePattern = /^[0-9]{2,}([.][0-9]{2})?$/;
+        if (namePattern.test(price)) {
+            return {
+                isValid: true,
+            };
+        } else {
+            return {
+                isValid: false,
+            };
+        }
+    }
 }
