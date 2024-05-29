@@ -1,6 +1,7 @@
 import CustomerModel from "../model/CustomerModel.js";
 import {CustomerAr, OrderAr} from "../db/db.js";
 import {refreshCustomers} from "./PlaceOrder.js";
+import {CustomerValidation} from "./validation/CustomerValidation.js";
 var recordIndex;
 $('#delete_btn').prop('disabled', true);
 $('#updateMain_btn').prop('disabled', true);
@@ -10,23 +11,40 @@ $('#save_btn').on('click' , ()=>{
     var customerName=$("#customerName").val();
     var customerAdd=$("#customerAdd").val();
     var customerSalary=$("#customerSalary").val();
-
-    let customerDetails = new CustomerModel(customerId,customerName,customerAdd,customerSalary);
-    CustomerAr.push(customerDetails);
-    refreshCustomers();
-    // console.log(CustomerAr[0]);
-    loadTable();
-    clearInputs();
-    Swal.fire({
-        position: 'bottom-right',
-        icon: 'success',
-        title: 'Customer has been Save successfully..!',
-        showConfirmButton: false,
-        timer: 2000,
-        customClass: {
-            popup: 'small'
-        }
-    });
+    var customerVal = new CustomerValidation();
+    const result1 = customerVal.customerNameVal(customerName);
+    $('#customerName').removeAttr('style');
+    if (result1.isValid){
+        let customerDetails = new CustomerModel(customerId,customerName,customerAdd,customerSalary);
+        CustomerAr.push(customerDetails);
+        refreshCustomers();
+        // console.log(CustomerAr[0]);
+        loadTable();
+        clearInputs();
+        Swal.fire({
+            position: 'bottom-right',
+            icon: 'success',
+            title: 'Customer has been Save successfully..!',
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+                popup: 'small'
+            }
+        });
+    }else {
+        $('#customerName').css({"border": "2px solid red"});
+        // alert("invalid name !!");
+        Swal.fire({
+            position: 'bottom-right',
+            icon: 'error',
+            title: 'invalid name..!',
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+                popup: 'small'
+            }
+        });
+    }
 });
 function loadTable() {
     $('#customer-table').empty();
