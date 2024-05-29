@@ -23,4 +23,16 @@ export class ItemValidation {
             };
         }
     }
+    itemQtyVal(qty) {
+        const namePattern = /^[0-9]{1,}$/;
+        if (namePattern.test(qty)) {
+            return {
+                isValid: true,
+            };
+        } else {
+            return {
+                isValid: false,
+            };
+        }
+    }
 }
