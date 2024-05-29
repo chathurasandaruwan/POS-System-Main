@@ -1,6 +1,8 @@
 import ItemModel from "../model/ItemModel.js";
-import {CustomerAr, ItemAr} from "../db/db.js";
+import {ItemAr} from "../db/db.js";
 import {refreshItems} from "./PlaceOrder.js";
+import {ItemValidation} from "./validation/ItemValidation.js";
+
 let recordIndex ;
 $('#btnDelete').prop('disabled', true);
 $('#updateMain_btn1').prop('disabled', true);
@@ -14,21 +16,38 @@ $("#btnSave").on('click' , () =>{
     var itemPrice = $("#item_price-main").val();
     var itemQty = $("#item_qty-main").val();
 
-    let itemDetails = new ItemModel(itemCode,itemName,itemPrice,itemQty);
-    ItemAr.push(itemDetails);
-    refreshItems();
-    loadTable();
-    clearInputs();
-    Swal.fire({
-        position: 'bottom-right',
-        icon: 'success',
-        title: 'Item has been Saved successfully..!',
-        showConfirmButton: false,
-        timer: 2000,
-        customClass: {
-            popup: 'small'
-        }
-    });
+    const  itemVal = new ItemValidation();
+    const result1 = itemVal.itemNameVal(itemName);
+    $('#item_Name-main').removeAttr('style');
+    if (result1.isValid){
+        let itemDetails = new ItemModel(itemCode,itemName,itemPrice,itemQty);
+        ItemAr.push(itemDetails);
+        refreshItems();
+        loadTable();
+        clearInputs();
+        Swal.fire({
+            position: 'bottom-right',
+            icon: 'success',
+            title: 'Item has been Saved successfully..!',
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+                popup: 'small'
+            }
+        });
+    }else {
+        $('#item_Name-main').css({"border": "2px solid red"});
+        Swal.fire({
+            position: 'bottom-right',
+            icon: 'error',
+            title: 'invalid name..!',
+            showConfirmButton: false,
+            timer: 2000,
+            customClass: {
+                popup: 'small'
+            }
+        });
+    }
 });
 
 function loadTable() {

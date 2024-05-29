@@ -145,7 +145,7 @@ $("#Update_btn").on('click',()=>{
         var custSalary=$("#cust_Salary").val();
 
 
-        var customerVal1 = new CustomerValidation();
+        const customerVal1 = new CustomerValidation();
         const result1 = customerVal1.customerNameVal(custName);
         const  result2 = customerVal1.customerAddressVal(custAdd);
         const  result3 =customerVal1.customerSalaryVal(custSalary);
