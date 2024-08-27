@@ -22,20 +22,39 @@ $('#save_btn').on('click' , ()=>{
         if (result2.isValid){
             if (result3.isValid){
                 let customerDetails = new CustomerModel(customerId,customerName,customerAdd,customerSalary);
-                CustomerAr.push(customerDetails);
-                refreshCustomers();
-                loadTable();
-                clearInputs();
-                Swal.fire({
-                    position: 'bottom-right',
-                    icon: 'success',
-                    title: 'Customer has been Save successfully..!',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    customClass: {
-                        popup: 'small'
+                // CustomerAr.push(customerDetails);
+
+                $.ajax({
+                    method:"POST",
+                    contentType:"application/json",
+                    url:"http://localhost:8080/PosSystem/customer",
+                    async:true,
+                    data:JSON.stringify({
+                        "customerId": customerId,
+                        "customerName": customerName,
+                        "customerAdd": customerAdd,
+                        "customerSalary": customerSalary
+                    }),
+                    success:function (data){
+                        refreshCustomers();
+                        loadTable();
+                        clearInputs();
+                        Swal.fire({
+                            position: 'bottom-right',
+                            icon: 'success',
+                            title: 'Customer has been Save successfully..!',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            customClass: {
+                                popup: 'small'
+                            }
+                        });
+
+                    },
+                    error:function (){
+                        alert("Error")
                     }
-                });
+                })
             }else {
                 $('#customerSalary').css({"border": "2px solid red"});
                 Swal.fire({
@@ -156,25 +175,51 @@ $("#Update_btn").on('click',()=>{
         if (result1.isValid){
             if (result2.isValid){
                 if (result3.isValid){
-                    var customerObj = CustomerAr[recordIndex];
+
+                    $.ajax({
+                        method:"PUT",
+                        contentType:"application/json",
+                        url:"http://localhost:8080/PosSystem/customer",
+                        async:true,
+                        data:JSON.stringify({
+                            "customerId": custId,
+                            "customerName": custName,
+                            "customerAdd": custAdd,
+                            "customerSalary": custSalary
+                        }),
+                        success:function (data){
+                            refreshCustomers();
+                            loadTable();
+                            clearInputs();
+                            Swal.fire({
+                                position: 'bottom-right',
+                                icon: 'success',
+                                title: 'Customer has been Updated successfully..!',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                customClass: {
+                                    popup: 'small'
+                                }
+                            });
+
+                        },
+                        error:function (){
+                            alert("Error")
+                        }
+                    })
+
+
+
+
+                    /*var customerObj = CustomerAr[recordIndex];
                     customerObj.customerId = custId;
                     customerObj.customerName = custName;
                     customerObj.customerAdd = custAdd;
-                    customerObj.customerSalary = custSalary;
+                    customerObj.customerSalary = custSalary;*/
 
                     $("#exampleModal1").modal("hide");
                     loadTable();
                     clearInputs();
-                    Swal.fire({
-                        position: 'bottom-right',
-                        icon: 'success',
-                        title: 'Customer has been Updated successfully..!',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        customClass: {
-                            popup: 'small'
-                        }
-                    });
                 }else {
                     $('#cust_Salary').css({"border": "2px solid red"});
                     Swal.fire({
