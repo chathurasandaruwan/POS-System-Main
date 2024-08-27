@@ -139,19 +139,39 @@ $('#clear_btn').on('click' , ()=>{
 $("#delete_btn").on('click',()=>{
     let consent = confirm("Do you really want to delete this customer.?");
     if (consent){
-        CustomerAr.splice(recordIndex,1);
+        var customerId=$("#customerId").val();
+        $.ajax({
+            method:"DELETE",
+            contentType:"text",
+            url:"http://localhost:8080/PosSystem/customer?id="+customerId,
+            async:true,
+            success:function (data){
+                refreshCustomers();
+                loadTable();
+                clearInputs();
+                Swal.fire({
+                    position: 'bottom-right',
+                    icon: 'success',
+                    title: 'Customer has been Delete successfully..!',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    customClass: {
+                        popup: 'small'
+                    }
+                });
+
+            },
+            error:function (){
+                alert("Error")
+            }
+        })
+
+
+
+
+        // CustomerAr.splice(recordIndex,1);
         loadTable();
         clearInputs();
-        Swal.fire({
-            position: 'bottom-right',
-            icon: 'success',
-            title: 'Customer has been Delete successfully..!',
-            showConfirmButton: false,
-            timer: 2000,
-            customClass: {
-                popup: 'small'
-            }
-        });
     }
 });
 
