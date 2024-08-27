@@ -6,6 +6,7 @@ var recordIndex;
 $('#delete_btn').prop('disabled', true);
 $('#updateMain_btn').prop('disabled', true);
 clearInputs();
+loadTable();
 $('#save_btn').on('click' , ()=>{
     var customerId=$("#customerId").val();
     var customerName=$("#customerName").val();
@@ -97,7 +98,14 @@ $('#save_btn').on('click' , ()=>{
 });
 function loadTable() {
     $('#customer-table').empty();
-    CustomerAr.map((item,index) =>{
+
+    $.ajax({
+        method:"GET",
+        contentType:"application/json",
+        url:"http://localhost:8080/PosSystem/customer",
+        async:true,
+        success:function (data){
+            data.map((item,index) =>{
         var record=`<tr>
             <td id="customerIdValue">${item.customerId}</td>
             <td id="customerNameValue">${item.customerName}</td>
@@ -105,6 +113,11 @@ function loadTable() {
             <td id="customerSalaryValue">${item.customerSalary}</td>
         </tr>`
         $('#customer-table').append(record);
+    });
+        },
+        error:function (){
+            alert("Error")
+        }
     });
 }
 $("#customer-table").on('click','tr',function (){
@@ -147,7 +160,7 @@ $("#delete_btn").on('click',()=>{
             async:true,
             success:function (data){
                 refreshCustomers();
-                loadTable();
+                // loadTable();
                 clearInputs();
                 Swal.fire({
                     position: 'bottom-right',
@@ -227,18 +240,8 @@ $("#Update_btn").on('click',()=>{
                             alert("Error")
                         }
                     })
-
-
-
-
-                    /*var customerObj = CustomerAr[recordIndex];
-                    customerObj.customerId = custId;
-                    customerObj.customerName = custName;
-                    customerObj.customerAdd = custAdd;
-                    customerObj.customerSalary = custSalary;*/
-
                     $("#exampleModal1").modal("hide");
-                    loadTable();
+                    // loadTable();
                     clearInputs();
                 }else {
                     $('#cust_Salary').css({"border": "2px solid red"});
