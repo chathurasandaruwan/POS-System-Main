@@ -7,6 +7,9 @@ import {loadOrderDetailTable} from "./OrderDetails.js";
 
 var recordIndex;
 clearAllInputs();
+refreshCustomers();
+refreshItems();
+var custAr;
 // $('#oId').val(generateNextOrderId());
 $('#discount').on("keydown keyup", function (e) {
  setSubTotalLbl();
@@ -15,22 +18,63 @@ $('#cash').on("keydown keyup", function (e) {
  setBalanceLbl();
 });
 export function refreshCustomers() {
-  $('#customer_inputState').empty();
-  for (let i = 0; i < CustomerAr.length; i++) {
-   $('#customer_inputState').append($('<option>', {
-    value: i,
-    text: CustomerAr[i].customerId
-   }));
+ $('#customer_inputState').empty();
+ let customerArray = [];
+ $.ajax({
+  method:"GET",
+  contentType:"application/json",
+  url:"http://localhost:8080/PosSystem/customer",
+  async:true,
+  success:function (data){
+   customerArray=data;
+   custAr=data;
+   for (let i = 0; i < customerArray.length; i++) {
+    $('#customer_inputState').append($('<option>', {
+     value: i,
+     text: customerArray[i].customerId
+    }));
+   }
+
+  },
+  error:function (){
+   alert("Error")
   }
+ });
+/*let custAR = getCustomerAr();
+ console.log("setCustAR"+custAR)
+ for (let i = 0; i < custAR.length; i++) {
+  $('#customer_inputState').append($('<option>', {
+   value: i,
+   text: custAR[i].customerId
+  }));
+ }*/
  }
 
-$("#customer_inputState").on('click','option',function (){
- let index = $(this).index();
- // console.log(CustomerAr[index]);
- let customerId = CustomerAr[index].customerId;
- let customerName = CustomerAr[index].customerName;
- let customerAdd = CustomerAr[index].customerAdd;
- let customerSalary = CustomerAr[index].customerSalary;
+ /*function getCustomerAr() {
+  let customerArray = [];
+  $.ajax({
+   method:"GET",
+   contentType:"application/json",
+   url:"http://localhost:8080/PosSystem/customer",
+   async:true,
+   success:function (data){
+    customerArray=data;
+    console.log("getCustAR"+customerArray)
+   },
+   error:function (){
+    alert("Error")
+   }
+  });
+  console.log("getCustAR"+customerArray)
+ }*/
+
+$("#customer_inputState").on('change',function (){
+ let index = $(this).prop('selectedIndex');
+ console.log(index)
+ let customerId = custAr[index].customerId;
+ let customerName = custAr[index].customerName;
+ let customerAdd = custAr[index].customerAdd;
+ let customerSalary = custAr[index].customerSalary;
  $("#C_id").val(customerId);
  $("#C_name").val(customerName);
  $("#C_salary").val(customerSalary);
@@ -39,15 +83,31 @@ $("#customer_inputState").on('click','option',function (){
 });
 export function refreshItems() {
  $('#item_inputState').empty();
- for (let i = 0; i < ItemAr.length; i++) {
-  $('#item_inputState').append($('<option>', {
-   value: i,
-   text: ItemAr[i].item_code
-  }));
- }
+
+ let ItemArray = [];
+ $.ajax({
+  method:"GET",
+  contentType:"application/json",
+  url:"http://localhost:8080/PosSystem/item",
+  async:true,
+  success:function (data){
+   ItemArray=data;
+   for (let i = 0; i < ItemArray.length; i++) {
+    $('#item_inputState').append($('<option>', {
+     value: i,
+     text: ItemArray[i].item_code
+    }));
+   }
+
+  },
+  error:function (){
+   alert("Error")
+  }
+ });
 }
-$("#item_inputState").on('click','option',function (){
+/*$('#item_inputState').on('click','option',function (){
  let index = $(this).index();
+ console.log(index)
  let itemCode = ItemAr[index].item_code;
  let itemName = ItemAr[index].item_Name;
  let itemPrice = ItemAr[index].item_price;
@@ -58,7 +118,22 @@ $("#item_inputState").on('click','option',function (){
  $("#price").val(itemPrice);
  $("#qtyOH").val(itemQty);
 
+});*/
+
+$('#item_inputState').on('change', function() {
+ let index = $(this).prop('selectedIndex');
+ console.log(index)
+ let itemCode = ItemAr[index].item_code;
+ let itemName = ItemAr[index].item_Name;
+ let itemPrice = ItemAr[index].item_price;
+ let itemQty = ItemAr[index].item_qty;
+
+ $("#itemCode").val(itemCode);
+ $("#itemName").val(itemName);
+ $("#price").val(itemPrice);
+ $("#qtyOH").val(itemQty);
 });
+
 $("#addToCart_btn").on('click' , () => {
  let itemCodeVal = $("#itemCode").val();
  let itemNameVal = $("#itemName").val();

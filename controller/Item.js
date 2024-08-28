@@ -186,6 +186,7 @@ $("#btnUpdate").on('click' , () =>{
                         success:function (data){
                             $("#exampleModal2").modal("hide");
                             loadTable();
+                            refreshItems();
                             clearInputs();
                             Swal.fire({
                                 position: 'bottom-right',
@@ -276,6 +277,7 @@ $("#btnDelete").on('click',()=>{
             success:function (data){
                 loadTable();
                 clearInputs();
+                refreshItems();
                 Swal.fire({
                     position: 'bottom-right',
                     icon: 'success',
