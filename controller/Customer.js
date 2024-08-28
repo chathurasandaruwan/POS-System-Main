@@ -5,6 +5,8 @@ import {CustomerValidation} from "./validation/CustomerValidation.js";
 var recordIndex;
 $('#delete_btn').prop('disabled', true);
 $('#updateMain_btn').prop('disabled', true);
+generateNextCustomerId();
+
 clearInputs();
 loadTable();
 $('#save_btn').on('click' , ()=>{
@@ -22,9 +24,6 @@ $('#save_btn').on('click' , ()=>{
     if (result1.isValid){
         if (result2.isValid){
             if (result3.isValid){
-                let customerDetails = new CustomerModel(customerId,customerName,customerAdd,customerSalary);
-                // CustomerAr.push(customerDetails);
-
                 $.ajax({
                     method:"POST",
                     contentType:"application/json",
@@ -50,7 +49,6 @@ $('#save_btn').on('click' , ()=>{
                                 popup: 'small'
                             }
                         });
-
                     },
                     error:function (){
                         alert("Error")
@@ -178,10 +176,6 @@ $("#delete_btn").on('click',()=>{
                 alert("Error")
             }
         })
-
-
-
-
         // CustomerAr.splice(recordIndex,1);
         loadTable();
         clearInputs();
@@ -301,8 +295,37 @@ function clearInputs() {
     $('#save_btn').prop('disabled', false);
 }
 function generateNextCustomerId() {
-    if (CustomerAr.length > 0){
-        let customerId = CustomerAr[CustomerAr.length-1]._customerId;
+    let customerArray = [];
+    $.ajax({
+        method:"GET",
+        contentType:"application/json",
+        url:"http://localhost:8080/PosSystem/customer",
+        async:true,
+        success:function (data){
+           customerArray=data;
+            // console.log(customerArray)
+            if (customerArray.length > 0){
+                let customerId = customerArray[customerArray.length-1].customerId;
+                let strings = customerId.split("CID-");
+                let id= parseInt(strings[1]);
+                /*console.log("ID IS "+id);*/
+                ++id;
+                let digit = id.toString().padStart(3, '0');
+
+                // return "CID-" + digit;
+                $("#customerId").val("CID-" + digit);
+                return ;
+            }else {
+                return "CID-001";
+            }
+        },
+        error:function (){
+            alert("Error")
+        }
+    });
+
+    /*if (customerArray.length > 0){
+        let customerId = customerArray[customerArray.length-1].customerId;
         let strings = customerId.split("CID-");
         let id= parseInt(strings[1]);
         console.log(id);
@@ -312,5 +335,5 @@ function generateNextCustomerId() {
         return "CID-" + digit;
     }else {
         return "CID-001";
-    }
+    }*/
 }
