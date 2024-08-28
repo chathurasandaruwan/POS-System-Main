@@ -7,6 +7,7 @@ let recordIndex ;
 $('#btnDelete').prop('disabled', true);
 $('#updateMain_btn1').prop('disabled', true);
 clearInputs();
+loadTable();
 export function reloadItemTable() {
     loadTable();
 }
@@ -102,14 +103,26 @@ $("#btnSave").on('click' , () =>{
 
 function loadTable() {
     $('#item-table').empty();
-    ItemAr.map((item,index) =>{
-        var record=`<tr>
+
+    $.ajax({
+        method:"GET",
+        contentType:"application/json",
+        url:"http://localhost:8080/PosSystem/item",
+        async:true,
+        success:function (data){
+            data.map((item,index) =>{
+                var record=`<tr>
             <td id="item_codeValue">${item.item_code}</td>
             <td id="item_NameValue">${item.item_Name}</td>
             <td id="item_priceValue">${item.item_price}</td>
             <td id="item_qtyValue">${item.item_qty}</td>
         </tr>`
-        $('#item-table').append(record);
+                $('#item-table').append(record);
+            });
+        },
+        error:function (){
+            alert("Error")
+        }
     });
 }
 
@@ -158,26 +171,37 @@ $("#btnUpdate").on('click' , () =>{
         if (result1.isValid){
             if (result2.isValid){
                 if (result3.isValid){
-                    let itemObj = ItemAr[recordIndex];
 
-                    itemObj.item_code = itemCode;
-                    itemObj.item_Name = itemName;
-                    itemObj.item_price = itemPrice;
-                    itemObj.item_qty = itemQty;
-
-                    $("#exampleModal2").modal("hide");
-                    loadTable();
-                    clearInputs();
-                    Swal.fire({
-                        position: 'bottom-right',
-                        icon: 'success',
-                        title: 'Item has been Updated successfully..!',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        customClass: {
-                            popup: 'small'
+                    $.ajax({
+                        method:"PUT",
+                        contentType:"application/json",
+                        url:"http://localhost:8080/PosSystem/item",
+                        async:true,
+                        data:JSON.stringify({
+                            "item_code": itemCode,
+                            "item_Name": itemName,
+                            "item_price": itemPrice,
+                            "item_qty": itemQty
+                        }),
+                        success:function (data){
+                            $("#exampleModal2").modal("hide");
+                            loadTable();
+                            clearInputs();
+                            Swal.fire({
+                                position: 'bottom-right',
+                                icon: 'success',
+                                title: 'Item has been Updated successfully..!',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                customClass: {
+                                    popup: 'small'
+                                }
+                            });
+                        },
+                        error:function (){
+                            alert("Error")
                         }
-                    });
+                    })
                 }else {
                     $('#item_qty').css({"border": "2px solid red"});
                     Swal.fire({
