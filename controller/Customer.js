@@ -158,7 +158,7 @@ $("#delete_btn").on('click',()=>{
             async:true,
             success:function (data){
                 refreshCustomers();
-                // loadTable();
+                loadTable();
                 clearInputs();
                 Swal.fire({
                     position: 'bottom-right',
@@ -177,8 +177,7 @@ $("#delete_btn").on('click',()=>{
             }
         })
         // CustomerAr.splice(recordIndex,1);
-        loadTable();
-        clearInputs();
+        // loadTable();
     }
 });
 
@@ -236,7 +235,6 @@ $("#Update_btn").on('click',()=>{
                     })
                     $("#exampleModal1").modal("hide");
                     // loadTable();
-                    clearInputs();
                 }else {
                     $('#cust_Salary').css({"border": "2px solid red"});
                     Swal.fire({
@@ -279,8 +277,7 @@ $("#Update_btn").on('click',()=>{
     }
 });
 function clearInputs() {
-    var customerId = generateNextCustomerId();
-    $("#customerId").val(customerId);
+     generateNextCustomerId();
     $("#customerName").val("");
     $("#customerAdd").val("");
     $("#customerSalary").val("");
@@ -314,9 +311,10 @@ function generateNextCustomerId() {
 
                 // return "CID-" + digit;
                 $("#customerId").val("CID-" + digit);
-                return ;
+                // return ;
             }else {
-                return "CID-001";
+                $("#customerId").val( "CID-001");
+                // return "CID-001";
             }
         },
         error:function (){
