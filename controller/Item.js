@@ -249,8 +249,7 @@ $("#btnClear").on('click' , () =>{
 });
 
 function clearInputs() {
-    var itemCode = generateNextItemCode();
-    $("#item_code-main").val(itemCode);
+    generateNextItemCode();
     $("#item_Name-main").val("");
     $("#item_price-main").val("");
     $("#item_qty-main").val("");
@@ -267,23 +266,64 @@ function clearInputs() {
 
 $("#btnDelete").on('click',()=>{
     let consent = confirm("Do you really want to delete this item.?");
-    ItemAr.splice(recordIndex,1);
-    loadTable();
-    clearInputs();
-    Swal.fire({
-        position: 'bottom-right',
-        icon: 'success',
-        title: 'Item has been Deleted successfully..!',
-        showConfirmButton: false,
-        timer: 2000,
-        customClass: {
-            popup: 'small'
-        }
-    });
+    if (consent){
+        var itemCode = $("#item_code").val();
+        $.ajax({
+            method:"DELETE",
+            contentType:"text",
+            url:"http://localhost:8080/PosSystem/item?id="+itemCode,
+            async:true,
+            success:function (data){
+                loadTable();
+                clearInputs();
+                Swal.fire({
+                    position: 'bottom-right',
+                    icon: 'success',
+                    title: 'Item has been Deleted successfully..!',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    customClass: {
+                        popup: 'small'
+                    }
+                });
+
+            },
+            error:function (){
+                alert("Error")
+            }
+        })
+
+    }
 });
 
 function generateNextItemCode() {
-    if (ItemAr.length > 0){
+    let ItemArray =[];
+    $.ajax({
+        method:"GET",
+        contentType:"application/json",
+        url:"http://localhost:8080/PosSystem/item",
+        async:true,
+        success:function (data){
+            ItemArray=data;
+            if (ItemArray.length > 0){
+                let itemCode = ItemArray[ItemArray.length-1].item_code;
+                let strings = itemCode.split("IID-");
+                let id= parseInt(strings[1]);
+                ++id;
+                let digit = id.toString().padStart(3, '0');
+                $("#item_code-main").val("IID-" + digit);
+            }else {
+                $("#item_code-main").val("IID-001");
+            }
+        },
+        error:function (){
+            alert("Error")
+        }
+    });
+
+
+
+   /* if (ItemAr.length > 0){
         let itemCode = ItemAr[ItemAr.length-1]._item_code;
         let strings = itemCode.split("IID-");
         let id= parseInt(strings[1]);
@@ -294,5 +334,5 @@ function generateNextItemCode() {
         return "IID-" + digit;
     }else {
         return "IID-001";
-    }
+    }*/
 }
