@@ -1,6 +1,6 @@
 import ItemModel from "../model/ItemModel.js";
 import {ItemAr} from "../db/db.js";
-import {refreshItems} from "./PlaceOrder.js";
+import {refreshCustomers, refreshItems} from "./PlaceOrder.js";
 import {ItemValidation} from "./validation/ItemValidation.js";
 
 let recordIndex ;
@@ -27,21 +27,38 @@ $("#btnSave").on('click' , () =>{
     if (result1.isValid){
         if (result2.isValid){
             if (result3.isValid){
-                let itemDetails = new ItemModel(itemCode,itemName,itemPrice,itemQty);
-                ItemAr.push(itemDetails);
-                refreshItems();
-                loadTable();
-                clearInputs();
-                Swal.fire({
-                    position: 'bottom-right',
-                    icon: 'success',
-                    title: 'Item has been Saved successfully..!',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    customClass: {
-                        popup: 'small'
+
+                $.ajax({
+                    method:"POST",
+                    contentType:"application/json",
+                    url:"http://localhost:8080/PosSystem/item",
+                    async:true,
+                    data:JSON.stringify({
+                        "item_code": itemCode,
+                        "item_Name": itemName,
+                        "item_price": itemPrice,
+                        "item_qty": itemQty
+                    }),
+                    success:function (data){
+                        refreshItems();
+                        loadTable();
+                        clearInputs();
+                        Swal.fire({
+                            position: 'bottom-right',
+                            icon: 'success',
+                            title: 'Item has been Saved successfully..!',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            customClass: {
+                                popup: 'small'
+                            }
+                        });
+                    },
+                    error:function (){
+                        alert("Error")
                     }
-                });
+                })
+
             }else {
                 $('#item_qty-main').css({"border": "2px solid red"});
                 Swal.fire({
