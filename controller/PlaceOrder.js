@@ -10,6 +10,7 @@ clearAllInputs();
 refreshCustomers();
 refreshItems();
 var custAr;
+var itemAr;
 // $('#oId').val(generateNextOrderId());
 $('#discount').on("keydown keyup", function (e) {
  setSubTotalLbl();
@@ -40,37 +41,10 @@ export function refreshCustomers() {
    alert("Error")
   }
  });
-/*let custAR = getCustomerAr();
- console.log("setCustAR"+custAR)
- for (let i = 0; i < custAR.length; i++) {
-  $('#customer_inputState').append($('<option>', {
-   value: i,
-   text: custAR[i].customerId
-  }));
- }*/
  }
-
- /*function getCustomerAr() {
-  let customerArray = [];
-  $.ajax({
-   method:"GET",
-   contentType:"application/json",
-   url:"http://localhost:8080/PosSystem/customer",
-   async:true,
-   success:function (data){
-    customerArray=data;
-    console.log("getCustAR"+customerArray)
-   },
-   error:function (){
-    alert("Error")
-   }
-  });
-  console.log("getCustAR"+customerArray)
- }*/
-
 $("#customer_inputState").on('change',function (){
  let index = $(this).prop('selectedIndex');
- console.log(index)
+ // console.log(index)
  let customerId = custAr[index].customerId;
  let customerName = custAr[index].customerName;
  let customerAdd = custAr[index].customerAdd;
@@ -92,6 +66,7 @@ export function refreshItems() {
   async:true,
   success:function (data){
    ItemArray=data;
+   itemAr=data;
    for (let i = 0; i < ItemArray.length; i++) {
     $('#item_inputState').append($('<option>', {
      value: i,
@@ -105,28 +80,14 @@ export function refreshItems() {
   }
  });
 }
-/*$('#item_inputState').on('click','option',function (){
- let index = $(this).index();
- console.log(index)
- let itemCode = ItemAr[index].item_code;
- let itemName = ItemAr[index].item_Name;
- let itemPrice = ItemAr[index].item_price;
- let itemQty = ItemAr[index].item_qty;
-
- $("#itemCode").val(itemCode);
- $("#itemName").val(itemName);
- $("#price").val(itemPrice);
- $("#qtyOH").val(itemQty);
-
-});*/
 
 $('#item_inputState').on('change', function() {
  let index = $(this).prop('selectedIndex');
  console.log(index)
- let itemCode = ItemAr[index].item_code;
- let itemName = ItemAr[index].item_Name;
- let itemPrice = ItemAr[index].item_price;
- let itemQty = ItemAr[index].item_qty;
+ let itemCode = itemAr[index].item_code;
+ let itemName = itemAr[index].item_Name;
+ let itemPrice = itemAr[index].item_price;
+ let itemQty = itemAr[index].item_qty;
 
  $("#itemCode").val(itemCode);
  $("#itemName").val(itemName);
@@ -147,8 +108,8 @@ let btnText =  $("#addToCart_btn").text();
 
 if (btnText === "AddToCart"){
  if (qtyOHVal > 0 && qtyOHVal >= qtyVal) {
-  let itemIndex = ItemAr.findIndex(item => item.item_code === itemCodeVal);
-  if (itemIndex !== -1) ItemAr[itemIndex].item_qty -= qtyVal;
+  let itemIndex = itemAr.findIndex(item => item.item_code === itemCodeVal);
+  if (itemIndex !== -1) itemAr[itemIndex].item_qty -= qtyVal;
 
   let found =false;
   for (let i = 0; i < PlaceOrderAr.length; i++) {
@@ -188,8 +149,8 @@ if (btnText === "AddToCart"){
 
 }else {
  // removeFromCart
- let itemIndex = ItemAr.findIndex(item => item.item_code === PlaceOrderAr[recordIndex].itemCode);
- if (itemIndex !== -1) ItemAr[itemIndex].item_qty += Number(PlaceOrderAr[recordIndex].qty);
+ let itemIndex = itemAr.findIndex(item => item.item_code === PlaceOrderAr[recordIndex].itemCode);
+ if (itemIndex !== -1) itemAr[itemIndex].item_qty += Number(PlaceOrderAr[recordIndex].qty);
  reloadItemTable();
  PlaceOrderAr.splice(recordIndex,1);
  loadTable();
@@ -288,31 +249,67 @@ $("#cancel_btn").on('click' , ()=>{
 });
 
 $("#btnPurchase").on('click' , ()=>{
+
  let j = OrderAr.length;
  for (let i = 0; i < PlaceOrderAr.length; i++) {
   let orderId = $('#oId').val();
   let itemCode = PlaceOrderAr[i].itemCode;
+  let itemName = PlaceOrderAr[i].itemName;
+  let itemPrice = PlaceOrderAr[i].price;
+  let ItemQty = itemAr[i].item_qty;
   let qty = PlaceOrderAr[i].qty;
+  let id = 0;
   let orderDate = $('#date').val();
   let customerId = $("#C_id").val();
 
-  let orderDetails = new OrderModel(orderId,itemCode,qty,orderDate,customerId);
-  OrderAr.push(orderDetails);
-  console.log(OrderAr[j++]);
+  $.ajax({
+   method:"POST",
+   contentType:"application/json",
+   url:"http://localhost:8080/PosSystem/order",
+   async:true,
+   data:JSON.stringify({
+
+    "itemDTO":{
+     "item_code": itemCode,
+     "item_Name": itemName,
+     "item_price": itemPrice,
+     "item_qty": ItemQty
+    },
+    "orderDTO":{
+     "order_id": orderId,
+     "item_code": itemCode,
+     "order_date": orderDate,
+     "customer_id": customerId
+    },
+    "orderDetailDTO":{
+     "id": id++,
+     "order_id": orderId,
+     "item_code": itemCode,
+     "qty": qty,
+     "order_date": orderDate,
+     "customer_id": customerId
+    }
+   }),
+   success:function (data){
+    PlaceOrderAr.length = 0;
+    clearAllInputs();
+    loadOrderDetailTable();
+    Swal.fire({
+     position: 'bottom-right',
+     icon: 'success',
+     title: 'Order has been Saved successfully..!',
+     showConfirmButton: false,
+     timer: 2000,
+     customClass: {
+      popup: 'small'
+     }
+    });
+   },
+   error:function (){
+    alert("Error")
+   }
+  })
  }
- PlaceOrderAr.length = 0;
- clearAllInputs();
- loadOrderDetailTable();
- Swal.fire({
-  position: 'bottom-right',
-  icon: 'success',
-  title: 'Order has been Saved successfully..!',
-  showConfirmButton: false,
-  timer: 2000,
-  customClass: {
-   popup: 'small'
-  }
- });
 });
 
 function clearAllInputs() {
