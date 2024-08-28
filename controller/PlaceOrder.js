@@ -317,7 +317,7 @@ function clearAllInputs() {
  let orderId = generateNextOrderId();
  console.log(orderId)
  $("#customer_inputState").val("");
- $('#oId').val(orderId);
+ // $('#oId').val(orderId);
  $('#date').val("");
  $("#C_id").val("");
  $('#placeOrder-table').empty();
@@ -332,6 +332,34 @@ function clearAllInputs() {
 
 }
 function generateNextOrderId() {
+
+ let OrderArray = [];
+ $.ajax({
+  method:"GET",
+  contentType:"application/json",
+  url:"http://localhost:8080/PosSystem/order",
+  async:true,
+  success:function (data){
+   OrderArray=data;
+   if (OrderArray.length > 0){
+    let orderId = OrderArray[OrderArray.length-1].order_id;
+    let strings = orderId.split("OID-");
+    let id= parseInt(strings[1]);
+    ++id;
+    let digit = id.toString().padStart(3, '0');
+
+    $("#oId").val("OID-" + digit);
+   }else {
+    $("#oId").val( "OID-001");
+   }
+  },
+  error:function (){
+   alert("Error")
+  }
+ });
+
+
+ /*
  if (OrderAr.length > 0){
   let orderId = OrderAr[OrderAr.length-1]._orderId;
   let strings = orderId.split("OID-");
@@ -343,5 +371,5 @@ function generateNextOrderId() {
   return "OID-" + digit;
  }else {
   return "OID-001";
- }
+ }*/
 }
