@@ -9,6 +9,7 @@ var recordIndex;
 clearAllInputs();
 refreshCustomers();
 refreshItems();
+loadOrderDetailTable();
 var custAr;
 var itemAr;
 // $('#oId').val(generateNextOrderId());
