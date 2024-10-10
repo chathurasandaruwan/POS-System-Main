@@ -3,10 +3,10 @@ import {OrderAr} from "../db/db.js";
 export function loadOrderDetailTable() {
     $('#orderDetail-tbl').empty();
 
-    $.ajax({
+   /* $.ajax({
         method:"GET",
         contentType:"application/json",
-        url:"http://localhost:8080/PosSystem/order",
+        url:"http://localhost:8080/PosSystem/api/v1/order",
         async:true,
         success:function (data){
             data.map((item,index) =>{
@@ -23,5 +23,5 @@ export function loadOrderDetailTable() {
         error:function (){
             alert("Error")
         }
-    });
+    });*/
 }

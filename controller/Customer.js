@@ -27,7 +27,7 @@ $('#save_btn').on('click' , ()=>{
                 $.ajax({
                     method:"POST",
                     contentType:"application/json",
-                    url:"http://localhost:8080/PosSystem/customer",
+                    url:"http://localhost:8080/PosSystem/api/v1/customer",
                     async:true,
                     data:JSON.stringify({
                         "customerId": customerId,
@@ -51,7 +51,7 @@ $('#save_btn').on('click' , ()=>{
                         });
                     },
                     error:function (){
-                        alert("Error")
+                        alert("Error from save customer save")
                     }
                 })
             }else {
@@ -100,7 +100,7 @@ function loadTable() {
     $.ajax({
         method:"GET",
         contentType:"application/json",
-        url:"http://localhost:8080/PosSystem/customer",
+        url:"http://localhost:8080/PosSystem/api/v1/customer",
         async:true,
         success:function (data){
             data.map((item,index) =>{
@@ -114,7 +114,7 @@ function loadTable() {
     });
         },
         error:function (){
-            alert("Error")
+            alert("Error from load table customer")
         }
     });
 }
@@ -154,7 +154,7 @@ $("#delete_btn").on('click',()=>{
         $.ajax({
             method:"DELETE",
             contentType:"text",
-            url:"http://localhost:8080/PosSystem/customer?id="+customerId,
+            url:"http://localhost:8080/PosSystem/api/v1/customer/"+customerId,
             async:true,
             success:function (data){
                 refreshCustomers();
@@ -205,7 +205,7 @@ $("#Update_btn").on('click',()=>{
                     $.ajax({
                         method:"PUT",
                         contentType:"application/json",
-                        url:"http://localhost:8080/PosSystem/customer",
+                        url:"http://localhost:8080/PosSystem/api/v1/customer/"+custId,
                         async:true,
                         data:JSON.stringify({
                             "customerId": custId,
@@ -230,7 +230,7 @@ $("#Update_btn").on('click',()=>{
 
                         },
                         error:function (){
-                            alert("Error")
+                            alert("Error from update customer")
                         }
                     })
                     $("#exampleModal1").modal("hide");
@@ -296,7 +296,7 @@ function generateNextCustomerId() {
     $.ajax({
         method:"GET",
         contentType:"application/json",
-        url:"http://localhost:8080/PosSystem/customer",
+        url:"http://localhost:8080/PosSystem/api/v1/customer",
         async:true,
         success:function (data){
            customerArray=data;
@@ -318,7 +318,7 @@ function generateNextCustomerId() {
             }
         },
         error:function (){
-            alert("Error")
+            alert("Error from generate next customer id")
         }
     });
 

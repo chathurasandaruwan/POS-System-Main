@@ -24,7 +24,7 @@ export function refreshCustomers() {
  $.ajax({
   method:"GET",
   contentType:"application/json",
-  url:"http://localhost:8080/PosSystem/customer",
+  url:"http://localhost:8080/PosSystem/api/v1/customer",
   async:true,
   success:function (data){
    customerArray=data;
@@ -62,7 +62,7 @@ export function refreshItems() {
  $.ajax({
   method:"GET",
   contentType:"application/json",
-  url:"http://localhost:8080/PosSystem/item",
+  url:"http://localhost:8080/PosSystem/api/v1/item",
   async:true,
   success:function (data){
    ItemArray=data;
@@ -249,51 +249,47 @@ $("#cancel_btn").on('click' , ()=>{
 });
 
 $("#btnPurchase").on('click' , ()=>{
+ let orderItems = [];
+ let qty=0;
 
- let j = OrderAr.length;
  for (let i = 0; i < PlaceOrderAr.length; i++) {
-  let orderId = $('#oId').val();
   let itemCode = PlaceOrderAr[i].itemCode;
   let itemName = PlaceOrderAr[i].itemName;
   let itemPrice = PlaceOrderAr[i].price;
-  let ItemQty = itemAr[i].item_qty;
-  let qty = PlaceOrderAr[i].qty;
-  let id = 0;
+  let itemQty = itemAr[i].item_qty;
+  qty += PlaceOrderAr[i].qty;
+
+  orderItems.push({
+   "item_code": itemCode,
+   "item_Name": itemName,
+   "item_price": itemPrice,
+   "item_qty": itemQty
+  });
+ }
+
+ let orderId = $('#oId').val();
   let orderDate = $('#date').val();
   let customerId = $("#C_id").val();
 
   $.ajax({
    method:"POST",
    contentType:"application/json",
-   url:"http://localhost:8080/PosSystem/order",
+   url:"http://localhost:8080/PosSystem/api/v1/order",
    async:true,
    data:JSON.stringify({
-
-    "itemDTO":{
-     "item_code": itemCode,
-     "item_Name": itemName,
-     "item_price": itemPrice,
-     "item_qty": ItemQty
+    "orderId": orderId,
+    "orderDate": orderDate,
+    "qty": qty,
+    "customer": {
+     "customerId": customerId
     },
-    "orderDTO":{
-     "order_id": orderId,
-     "item_code": itemCode,
-     "order_date": orderDate,
-     "customer_id": customerId
-    },
-    "orderDetailDTO":{
-     "id": id++,
-     "order_id": orderId,
-     "item_code": itemCode,
-     "qty": qty,
-     "order_date": orderDate,
-     "customer_id": customerId
-    }
+    "items": orderItems
    }),
-   success:function (data){
+   success:function (data) {
     PlaceOrderAr.length = 0;
     clearAllInputs();
     loadOrderDetailTable();
+    reloadItemTable();
     Swal.fire({
      position: 'bottom-right',
      icon: 'success',
@@ -309,13 +305,13 @@ $("#btnPurchase").on('click' , ()=>{
     alert("Error")
    }
   })
- }
+
 });
 
 function clearAllInputs() {
- clearItemSelectInputs();
+/* clearItemSelectInputs();
  let orderId = generateNextOrderId();
- console.log(orderId)
+ console.log(orderId)*/
  $("#customer_inputState").val("");
  // $('#oId').val(orderId);
  $('#date').val("");
@@ -334,7 +330,7 @@ function clearAllInputs() {
 function generateNextOrderId() {
 
  let OrderArray = [];
- $.ajax({
+ /*$.ajax({
   method:"GET",
   contentType:"application/json",
   url:"http://localhost:8080/PosSystem/order",
@@ -356,7 +352,7 @@ function generateNextOrderId() {
   error:function (){
    alert("Error")
   }
- });
+ });*/
 
 
  /*

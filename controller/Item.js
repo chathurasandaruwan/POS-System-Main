@@ -32,7 +32,7 @@ $("#btnSave").on('click' , () =>{
                 $.ajax({
                     method:"POST",
                     contentType:"application/json",
-                    url:"http://localhost:8080/PosSystem/item",
+                    url:"http://localhost:8080/PosSystem/api/v1/item",
                     async:true,
                     data:JSON.stringify({
                         "item_code": itemCode,
@@ -56,7 +56,7 @@ $("#btnSave").on('click' , () =>{
                         });
                     },
                     error:function (){
-                        alert("Error")
+                        alert("Error for saving item")
                     }
                 })
 
@@ -107,7 +107,7 @@ function loadTable() {
     $.ajax({
         method:"GET",
         contentType:"application/json",
-        url:"http://localhost:8080/PosSystem/item",
+        url:"http://localhost:8080/PosSystem/api/v1/item",
         async:true,
         success:function (data){
             data.map((item,index) =>{
@@ -121,7 +121,7 @@ function loadTable() {
             });
         },
         error:function (){
-            alert("Error")
+            alert("Error for loading item")
         }
     });
 }
@@ -175,7 +175,7 @@ $("#btnUpdate").on('click' , () =>{
                     $.ajax({
                         method:"PUT",
                         contentType:"application/json",
-                        url:"http://localhost:8080/PosSystem/item",
+                        url:"http://localhost:8080/PosSystem/api/v1/item/"+itemCode,
                         async:true,
                         data:JSON.stringify({
                             "item_code": itemCode,
@@ -200,7 +200,7 @@ $("#btnUpdate").on('click' , () =>{
                             });
                         },
                         error:function (){
-                            alert("Error")
+                            alert("Error for updating item")
                         }
                     })
                 }else {
@@ -272,7 +272,7 @@ $("#btnDelete").on('click',()=>{
         $.ajax({
             method:"DELETE",
             contentType:"text",
-            url:"http://localhost:8080/PosSystem/item?id="+itemCode,
+            url:"http://localhost:8080/PosSystem/api/v1/item/"+itemCode,
             async:true,
             success:function (data){
                 loadTable();
@@ -291,7 +291,7 @@ $("#btnDelete").on('click',()=>{
 
             },
             error:function (){
-                alert("Error")
+                alert("Error for deleting item")
             }
         })
 
@@ -303,7 +303,7 @@ function generateNextItemCode() {
     $.ajax({
         method:"GET",
         contentType:"application/json",
-        url:"http://localhost:8080/PosSystem/item",
+        url:"http://localhost:8080/PosSystem/api/v1/item",
         async:true,
         success:function (data){
             ItemArray=data;
@@ -319,7 +319,7 @@ function generateNextItemCode() {
             }
         },
         error:function (){
-            alert("Error")
+            alert("Error from generating item code")
         }
     });
 
