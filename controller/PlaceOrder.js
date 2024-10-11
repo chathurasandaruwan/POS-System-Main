@@ -278,8 +278,8 @@ $("#btnPurchase").on('click' , ()=>{
    url:"http://localhost:8080/PosSystem/api/v1/order",
    async:true,
    data:JSON.stringify({
-    "orderId": orderId,
-    "orderDate": orderDate,
+    "order_id": orderId,
+    "order_date": orderDate,
     "qty": qty,
     "customer": {
      "customerId": customerId

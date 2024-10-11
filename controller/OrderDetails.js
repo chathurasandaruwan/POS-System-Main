@@ -22,15 +22,16 @@ export function loadOrderDetailTable() {
             });*/
 
             data.map((order, index) => {
+                console.log(order)
                     let customer = order.customer;
                     let items = order.items;
                     // Loop through items to display them
                     items.forEach((item) => {
                         var record = `<tr>
-                    <td id="orderIdValue">${order.orderId}</td>
+                    <td id="orderIdValue">${order.order_id}</td>
                     <td id="itemCodeValue">${item.item_code}</td>
                     <td id="priceValue">${order.qty}</td>
-                    <td id="qtyValue">${order.orderDate}</td>
+                    <td id="qtyValue">${order.order_date}</td>
                     <td id="total">${customer.customerId}</td>
                 </tr>`;
 
