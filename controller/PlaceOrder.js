@@ -1,8 +1,6 @@
 import {CustomerAr,PlaceOrderAr} from "../db/db.js";
-import {ItemAr,OrderAr} from "../db/db.js";
 import PlaceOrderModel from "../model/PlaceOrderModel.js";
 import {reloadItemTable} from "./Item.js";
-import OrderModel from "../model/OrderModel.js";
 import {loadOrderDetailTable} from "./OrderDetails.js";
 
 var recordIndex;

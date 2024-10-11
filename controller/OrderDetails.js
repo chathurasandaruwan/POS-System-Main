@@ -1,5 +1,3 @@
-import {OrderAr} from "../db/db.js";
-
 export function loadOrderDetailTable() {
     $('#orderDetail-tbl').empty();
 
