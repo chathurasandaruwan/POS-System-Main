@@ -30,10 +30,10 @@ $('#save_btn').on('click' , ()=>{
                     url:"http://localhost:8080/PosSystem/api/v1/customer",
                     async:true,
                     data:JSON.stringify({
-                        "customerId": customerId,
                         "customerName": customerName,
                         "customerAdd": customerAdd,
-                        "customerSalary": customerSalary
+                        "customerSalary": customerSalary,
+                        "tempId": customerId
                     }),
                     success:function (data){
                         refreshCustomers();
@@ -105,7 +105,7 @@ function loadTable() {
         success:function (data){
             data.map((item,index) =>{
         var record=`<tr>
-            <td id="customerIdValue">${item.customerId}</td>
+            <td id="customerIdValue">${item.tempId}</td>
             <td id="customerNameValue">${item.customerName}</td>
             <td id="customerAddValue">${item.customerAdd}</td>
             <td id="customerSalaryValue">${item.customerSalary}</td>
@@ -300,9 +300,9 @@ function generateNextCustomerId() {
         async:true,
         success:function (data){
            customerArray=data;
-            // console.log(customerArray)
+            console.log(customerArray)
             if (customerArray.length > 0){
-                let customerId = customerArray[customerArray.length-1].customerId;
+                let customerId = customerArray[customerArray.length-1].tempId;
                 let strings = customerId.split("CID-");
                 let id= parseInt(strings[1]);
                 /*console.log("ID IS "+id);*/

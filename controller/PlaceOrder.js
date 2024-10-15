@@ -31,7 +31,7 @@ export function refreshCustomers() {
    for (let i = 0; i < customerArray.length; i++) {
     $('#customer_inputState').append($('<option>', {
      value: i,
-     text: customerArray[i].customerId
+     text: customerArray[i].tempId
     }));
    }
 
@@ -44,7 +44,7 @@ export function refreshCustomers() {
 $("#customer_inputState").on('change',function (){
  let index = $(this).prop('selectedIndex');
  // console.log(index)
- let customerId = custAr[index].customerId;
+ let customerId = custAr[index].tempId;
  let customerName = custAr[index].customerName;
  let customerAdd = custAr[index].customerAdd;
  let customerSalary = custAr[index].customerSalary;
