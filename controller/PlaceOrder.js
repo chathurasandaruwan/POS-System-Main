@@ -69,7 +69,7 @@ export function refreshItems() {
    for (let i = 0; i < ItemArray.length; i++) {
     $('#item_inputState').append($('<option>', {
      value: i,
-     text: ItemArray[i].item_code
+     text: ItemArray[i].tempId
     }));
    }
 
@@ -83,7 +83,7 @@ export function refreshItems() {
 $('#item_inputState').on('change', function() {
  let index = $(this).prop('selectedIndex');
  console.log(index)
- let itemCode = itemAr[index].item_code;
+ let itemCode = itemAr[index].tempId;
  let itemName = itemAr[index].item_Name;
  let itemPrice = itemAr[index].item_price;
  let itemQty = itemAr[index].item_qty;
@@ -107,7 +107,7 @@ let btnText =  $("#addToCart_btn").text();
 
 if (btnText === "AddToCart"){
  if (qtyOHVal > 0 && qtyOHVal >= qtyVal) {
-  let itemIndex = itemAr.findIndex(item => item.item_code === itemCodeVal);
+  let itemIndex = itemAr.findIndex(item => item.tempId === itemCodeVal);
   if (itemIndex !== -1) itemAr[itemIndex].item_qty -= qtyVal;
 
   let found =false;
@@ -148,7 +148,7 @@ if (btnText === "AddToCart"){
 
 }else {
  // removeFromCart
- let itemIndex = itemAr.findIndex(item => item.item_code === PlaceOrderAr[recordIndex].itemCode);
+ let itemIndex = itemAr.findIndex(item => item.tempId === PlaceOrderAr[recordIndex].itemCode);
  if (itemIndex !== -1) itemAr[itemIndex].item_qty += Number(PlaceOrderAr[recordIndex].qty);
  reloadItemTable();
  PlaceOrderAr.splice(recordIndex,1);

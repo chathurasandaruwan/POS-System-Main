@@ -35,10 +35,10 @@ $("#btnSave").on('click' , () =>{
                     url:"http://localhost:8080/PosSystem/api/v1/item",
                     async:true,
                     data:JSON.stringify({
-                        "item_code": itemCode,
                         "item_Name": itemName,
                         "item_price": itemPrice,
-                        "item_qty": itemQty
+                        "item_qty": itemQty,
+                        "tempId": itemCode
                     }),
                     success:function (data){
                         refreshItems();
@@ -110,9 +110,15 @@ function loadTable() {
         url:"http://localhost:8080/PosSystem/api/v1/item",
         async:true,
         success:function (data){
+            // sort to setOrderBy tempId
+            data.sort((a, b) => {
+                let numA = parseInt(a.tempId.split('-')[1]);
+                let numB = parseInt(b.tempId.split('-')[1]);
+                return numA - numB;
+            });
             data.map((item,index) =>{
                 var record=`<tr>
-            <td id="item_codeValue">${item.item_code}</td>
+            <td id="item_codeValue">${item.tempId}</td>
             <td id="item_NameValue">${item.item_Name}</td>
             <td id="item_priceValue">${item.item_price}</td>
             <td id="item_qtyValue">${item.item_qty}</td>
@@ -306,9 +312,15 @@ function generateNextItemCode() {
         url:"http://localhost:8080/PosSystem/api/v1/item",
         async:true,
         success:function (data){
+            // sort to setOrderBy tempId
+            data.sort((a, b) => {
+                let numA = parseInt(a.tempId.split('-')[1]);
+                let numB = parseInt(b.tempId.split('-')[1]);
+                return numA - numB;
+            });
             ItemArray=data;
             if (ItemArray.length > 0){
-                let itemCode = ItemArray[ItemArray.length-1].item_code;
+                let itemCode = ItemArray[ItemArray.length-1].tempId;
                 let strings = itemCode.split("IID-");
                 let id= parseInt(strings[1]);
                 ++id;
