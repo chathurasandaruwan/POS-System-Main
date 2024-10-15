@@ -103,6 +103,12 @@ function loadTable() {
         url:"http://localhost:8080/PosSystem/api/v1/customer",
         async:true,
         success:function (data){
+            // sort to setOrderBy tempId
+            data.sort((a, b) => {
+                let numA = parseInt(a.tempId.split('-')[1]);
+                let numB = parseInt(b.tempId.split('-')[1]);
+                return numA - numB;
+            });
             data.map((item,index) =>{
         var record=`<tr>
             <td id="customerIdValue">${item.tempId}</td>
@@ -299,8 +305,13 @@ function generateNextCustomerId() {
         url:"http://localhost:8080/PosSystem/api/v1/customer",
         async:true,
         success:function (data){
+            // sort to setOrderBy tempId
+            data.sort((a, b) => {
+                let numA = parseInt(a.tempId.split('-')[1]);
+                let numB = parseInt(b.tempId.split('-')[1]);
+                return numA - numB;
+            });
            customerArray=data;
-            console.log(customerArray)
             if (customerArray.length > 0){
                 let customerId = customerArray[customerArray.length-1].tempId;
                 let strings = customerId.split("CID-");
