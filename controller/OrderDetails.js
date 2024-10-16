@@ -26,11 +26,11 @@ export function loadOrderDetailTable() {
                     // Loop through items to display them
                     items.forEach((item) => {
                         var record = `<tr>
-                    <td id="orderIdValue">${order.order_id}</td>
-                    <td id="itemCodeValue">${item.item_code}</td>
-                    <td id="priceValue">${order.qty}</td>
+                    <td id="orderIdValue">${order.tempId}</td>
+                    <td id="itemCodeValue">${item.tempId}</td>
+                    <td id="priceValue">${item.item_Name}</td>
                     <td id="qtyValue">${order.order_date}</td>
-                    <td id="total">${customer.customerId}</td>
+                    <td id="total">${customer.tempId}</td>
                 </tr>`;
 
                         $('#orderDetail-tbl').append(record);

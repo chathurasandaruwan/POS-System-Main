@@ -259,10 +259,12 @@ $("#btnPurchase").on('click' , ()=>{
   qty += PlaceOrderAr[i].qty;
 
   orderItems.push({
-   "item_code": itemCode,
+   // "item_code": itemCode,
    "item_Name": itemName,
    "item_price": itemPrice,
-   "item_qty": itemQty
+   "item_qty": itemQty,
+   "tempId": itemCode
+
   });
  }
 
@@ -276,9 +278,10 @@ $("#btnPurchase").on('click' , ()=>{
    url:"http://localhost:8080/PosSystem/api/v1/order",
    async:true,
    data:JSON.stringify({
-    "order_id": orderId,
+    // "order_id": orderId,
     "order_date": orderDate,
     "qty": qty,
+    "tempId": orderId,
     "customer": {
      "customerId": customerId
     },
@@ -308,9 +311,8 @@ $("#btnPurchase").on('click' , ()=>{
 });
 
 function clearAllInputs() {
-/* clearItemSelectInputs();
- let orderId = generateNextOrderId();
- console.log(orderId)*/
+ clearItemSelectInputs();
+ generateNextOrderId();
  $("#customer_inputState").val("");
  // $('#oId').val(orderId);
  $('#date').val("");
@@ -329,15 +331,21 @@ function clearAllInputs() {
 function generateNextOrderId() {
 
  let OrderArray = [];
- /*$.ajax({
+ $.ajax({
   method:"GET",
   contentType:"application/json",
-  url:"http://localhost:8080/PosSystem/order",
+  url:"http://localhost:8080/PosSystem/api/v1/order",
   async:true,
   success:function (data){
+   // sort to setOrderBy tempId
+   data.sort((a, b) => {
+    let numA = parseInt(a.tempId.split('-')[1]);
+    let numB = parseInt(b.tempId.split('-')[1]);
+    return numA - numB;
+   });
    OrderArray=data;
    if (OrderArray.length > 0){
-    let orderId = OrderArray[OrderArray.length-1].order_id;
+    let orderId = OrderArray[OrderArray.length-1].tempId;
     let strings = orderId.split("OID-");
     let id= parseInt(strings[1]);
     ++id;
@@ -351,7 +359,7 @@ function generateNextOrderId() {
   error:function (){
    alert("Error")
   }
- });*/
+ });
 
 
  /*
